@@ -1,62 +1,127 @@
-<!doctype html>
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>iNotes by ThePhiladelphiaOrchestra</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Scrolling Nav - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/scrolling-nav.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header">iNotes</h1>
-        <p class="header">The publicly available versions of the native iPhone app, the multicast server and the CMS for iNotes.</p>
 
-        <ul>
-          <li class="download"><a class="buttons" href="https://github.com/ThePhiladelphiaOrchestra/iNotes/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/ThePhiladelphiaOrchestra/iNotes/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/ThePhiladelphiaOrchestra/iNotes">View On GitHub</a></li>
-        </ul>
+</head>
 
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/ThePhiladelphiaOrchestra">ThePhiladelphiaOrchestra</a></p>
+<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
 
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-      </header>
-      <section>
-        <h1>
-<a id="-inotes" class="anchor" href="#-inotes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><img src="https://www.philorch.org/sites/default/files/LiveNote-Icon-Glossy.png" alt="iNote Icon"> iNotes</h1>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Start Bootstrap</a>
+            </div>
 
-<p>This app provides novice and experienced listeners alike the opportunity to learn more about the music while listening to a live performance. </p>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a class="page-scroll" href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#services">Services</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
-<p>Follow along during the performance with real-time slides. Slides automatically advance with the music, pointing out key highlights, engaging details and images relating to the composition.</p>
+    <!-- Intro Section -->
+    <section id="intro" class="intro-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Scrolling Nav</h1>
+                    <p><strong>Usage Instructions:</strong> Make sure to include the <code>scrolling-nav.js</code>, <code>jquery.easing.min.js</code>, and <code>scrolling-nav.css</code> files. To make a link smooth scroll to another section on the page, give the link the <code>.page-scroll</code> class and set the link target to a corresponding ID on the page.</p>
+                    <a class="btn btn-default page-scroll" href="#about">Click Me to Scroll Down!</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<p>Access additional supplementary content atany time including a digital version of the program notes, a musical glossary and information about the venue or performing group.</p>
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>About Section</h1>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<h2>
-<a id="with-livenote-you-can" class="anchor" href="#with-livenote-you-can" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>With iNotes you can:</h2>
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Services Section</h1>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<ul>
-<li>Follow along during the performance with real-time program notes including text and translations for vocal works.</li>
-<li>Watch the slides of information automatically advance with the music on your phone’s screen during the concert.</li>
-<li>Enjoy key highlights, engaging details, and images relating to the composition.</li>
-<li>Access a musical glossary, a digital version of the traditional program notes, and information about the venue or performing group.</li>
-<li>Adjust the font size and brightness for optimal viewing during a performance.</li>
-</ul>
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Contact Section</h1>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<p>iNotes has been developed to have minimal impact on concertgoers in the hall and has been thoroughly tested in rehearsals and postlude performances. The application is designed with grey text on a black background specifically to minimize light and disruption. The content is custom designed for each piece to optimize the experience of hearing the work without distraction.  </p>
-      </section>
-      <footer>
-        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
-      </footer>
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
-  </body>
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/scrolling-nav.js"></script>
+
+</body>
+
 </html>
