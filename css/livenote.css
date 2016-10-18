@@ -1,3 +1,7 @@
+h2 {
+	font-size: 24px;
+}
+
 .about-section, .contact-section {
     text-align: left;
 }
