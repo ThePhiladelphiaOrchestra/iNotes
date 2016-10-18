@@ -1,10 +1,17 @@
+.about-section, .contact-section {
+    text-align: left;
+}
+.git-button, .git-button:hover {
+	border-color: #222;
+}
+
 .navbar-default {
     background-color: #222;
     border-bottom-color: #EF403A;
     border-bottom-width: 4px;
 }
 .navbar-brand {
-    font-size: 26px;
+    font-size: 28px;
 }
 .navbar-default .navbar-brand {
     color: #d0d3d4;
