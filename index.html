@@ -156,44 +156,50 @@
     <section id="contact" class="contact-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <h1>Contact Us</h1>
-                    <p>Please use the form below to contact us about LiveNote. </p>
-                    <form data-toggle="validator" role="form">
-                    	<div class="form-group row">
-						    <label for="name" class="col-sm-2 col-form-label">Your Name</label>
-						    <div class="col-sm-6">
-						    	<input type="text" class="form-control" id="name" placeholder="Your Name" required />
-						    </div>
-    						<div class="help-block with-errors"></div>
-  						</div>
-                    	<div class="form-group row">
-						    <label for="email" class="col-sm-2 col-form-label">Your Email</label>
-						    <div class="col-sm-6">
-						    	<input type="email" class="form-control" id="email" placeholder="Your Email" required />
-						    </div>
-    						<div class="help-block with-errors"></div>
-  						</div>
-                    	<div class="form-group row">
-						    <label for="org" class="col-sm-2 col-form-label">Your Organization</label>
-						    <div class="col-sm-6">
-						    	<input type="text" class="form-control" id="org" placeholder="Your Organization" required />
-						    </div>
-    						<div class="help-block with-errors"></div>
-  						</div>
-                    	<div class="form-group row">
-						    <label for="org" class="col-sm-2 col-form-label">Comments</label>
-						    <div class="col-sm-6">
-						    	<textarea class="form-control" id="notes" ></textarea>
-						    </div>
-  						</div>
-                    	<div class="form-group row">
-						    <div class="col-sm-8">
-                    			<button class="btn btn-danger" id="submit">Submit</button>
-						    	<input type="text" id="honeypot" style="display:none" />
-                    		</div>
-  						</div>
-                    </form>
+                <div class="col-lg-9">
+                	<div id="contactForm">
+						<h1>Contact Us</h1>
+						<p>Please use the form below to contact us about LiveNote. </p>
+						<form data-toggle="validator" role="form">
+							<div class="form-group row">
+								<label for="name" class="col-sm-3 col-form-label">Your Name</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="name" placeholder="Your Name" required />
+								</div>
+								<div class="help-block with-errors"></div>
+							</div>
+							<div class="form-group row">
+								<label for="email" class="col-sm-3 col-form-label">Your Email</label>
+								<div class="col-sm-9">
+									<input type="email" class="form-control" id="email" placeholder="Your Email" required />
+								</div>
+								<div class="help-block with-errors"></div>
+							</div>
+							<div class="form-group row">
+								<label for="org" class="col-sm-3 col-form-label">Your Organization</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="org" placeholder="Your Organization" required />
+								</div>
+								<div class="help-block with-errors"></div>
+							</div>
+							<div class="form-group row">
+								<label for="org" class="col-sm-3 col-form-label">Comments</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" id="notes" ></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-9">
+									<button class="btn btn-danger" id="submit">Submit</button>
+									<input type="text" id="honeypot" style="display:none" />
+								</div>
+							</div>
+						</form>
+                    </div>
+                	<div id="thanks">
+                		<h1>Thank you!</h1>
+                		<p>Thank you for your interest! We will contact you regarding LiveNote shortly.</p>
+                	</div>
                 </div>
             </div>
         </div>
@@ -212,6 +218,14 @@
 
     <script type="text/javascript">
     	$( document ).ready(function() {
+			$("#thanks").hide();
+
+			clearForm = function(){
+				$('#name').val('');
+				$('#email').val('');
+				$('#org').val('');
+				$('#notes').val('');
+			};
 
 			$("#submit").on("click", function(e) {
 				e.preventDefault();
@@ -236,10 +250,12 @@
 					},
 					dataType: "json",
 					success: function() {
-						alert('success');
+						clearForm();
+						$("#contactForm").hide();
+						$("#thanks").show();
 					},
 					failure: function() {
-						alert('failure');
+						alert('An error has occurred. Please try again or contact someone@philorch.org.');
 					}
 
        			});
