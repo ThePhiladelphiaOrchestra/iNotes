@@ -8,7 +8,7 @@ h3 {
 .about-section, .contact-section {
     text-align: left;
 }
-.git-button, .git-button:hover {
+.btn-danger, .btn-danger:hover {
 	border-color: #222;
 }
 

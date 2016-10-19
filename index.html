@@ -71,13 +71,13 @@
                 <div class="col-lg-6">
                     <h1>LiveNote</h1>
                     <p>Stuff here</p>
-                    <a class="btn btn-default page-scroll" href="#aboutLiveNote">Learn more about LiveNote</a>
+                    <a class="btn btn-default btn-danger page-scroll" href="#aboutLiveNote">Learn more about LiveNote</a>
                 </div>
                 <div class="col-lg-6">
                     <h1>iNotes</h1>
                     <!--<p><strong>Usage Instructions:</strong> Make sure to include the <code>scrolling-nav.js</code>, <code>jquery.easing.min.js</code>, and <code>scrolling-nav.css</code> files. To make a link smooth scroll to another section on the page, give the link the <code>.page-scroll</code> class and set the link target to a corresponding ID on the page.</p> -->
                     <p>Other stuff here</p>
-                    <a class="btn btn-default page-scroll" href="#aboutINotes">Learn more about iNotes</a>
+                    <a class="btn btn-default btn-danger git-button page-scroll" href="#aboutINotes">Learn more about iNotes</a>
                 </div>
             </div>
         </div>
@@ -92,7 +92,7 @@
 					<p>LiveNote is a private repository on GitHub.</p>
 					<p></p>
 					<p>Please contact us to request access.</p>
-					<a class="btn btn-danger btn-block git-button page-scroll" href="#contact">Contact Us</a>
+					<a class="btn btn-danger btn-block page-scroll" href="#contact">Contact Us</a>
 				</div>
                 <div class="col-lg-1">
                 </div>
@@ -128,8 +128,8 @@
 					<h2>On GitHub</h2>
 					<p>iNotes is a public repository on GitHub.</p>
 					<p>Use the links below to access documentation and download the code.</p>
-					<a class="btn btn-danger btn-block git-button" href="https://github.com/ThePhiladelphiaOrchestra/iNotes/wiki" target="_blank">Documentation</a>
-					<a class="btn btn-danger btn-block git-button" href="https://github.com/ThePhiladelphiaOrchestra/iNotes" target="_blank">Get The Code</a>
+					<a class="btn btn-danger btn-block" href="https://github.com/ThePhiladelphiaOrchestra/iNotes/wiki" target="_blank">Documentation</a>
+					<a class="btn btn-danger btn-block" href="https://github.com/ThePhiladelphiaOrchestra/iNotes" target="_blank">Get The Code</a>
 				</div>
                 <div class="col-lg-1">
                 </div>
@@ -168,7 +168,7 @@
     						<div class="help-block with-errors"></div>
   						</div>
                     	<div class="form-group row">
-						    <label for="email" class="col-sm-2 col-form-label">Your Name</label>
+						    <label for="email" class="col-sm-2 col-form-label">Your Email</label>
 						    <div class="col-sm-6">
 						    	<input type="email" class="form-control" id="email" placeholder="Your Email" required />
 						    </div>
@@ -189,7 +189,8 @@
   						</div>
                     	<div class="form-group row">
 						    <div class="col-sm-8">
-                    			<button class="btn btn-danger git-button" id="submit">Submit</button>
+                    			<button class="btn btn-danger" id="submit">Submit</button>
+						    	<input type="text" id="honeypot" style="display:none" />
                     		</div>
   						</div>
                     </form>
@@ -203,19 +204,45 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.com/libraries/1000hz-bootstrap-validator"></script>
+    <script src="js/bootstrap-validator.js"></script>
 
     <!-- Scrolling Nav JavaScript -->
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/scrolling-nav.js"></script>
 
-    <script>
+    <script type="text/javascript">
     	$( document ).ready(function() {
 
 			$("#submit").on("click", function() {
 				var errorCount = $(".has-error").length;
 				if (errorCount > 0) { return; }
-				alert("sent!")
+				if ($("#honeypot").val() != "") { return; }
+
+				var name = $('#name').val();
+				var email = $('#email').val();
+				var org = $('#org').val()
+        		var notes = $('#notes').val();
+
+				$.ajax({
+					url: 'https://formspree.io/cbrittain@philorch.org',
+					method: 'POST',
+					data: {
+						name: name,
+						_replyto: email,
+						email: email,
+						notes: notes,
+						_subject: 'LiveNote Contact Form',
+					},
+					dataType: "json",
+					success: function() {
+						alert('success');
+					},
+					failure: function() {
+						alert('failure');
+					}
+
+       			});
+
 			});
 
 		});
