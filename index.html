@@ -213,7 +213,8 @@
     <script type="text/javascript">
     	$( document ).ready(function() {
 
-			$("#submit").on("click", function() {
+			$("#submit").on("click", function(e) {
+				e.preventDefault();
 				var errorCount = $(".has-error").length;
 				if (errorCount > 0) { return; }
 				if ($("#honeypot").val() != "") { return; }
