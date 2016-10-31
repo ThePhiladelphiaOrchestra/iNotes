@@ -1,0 +1,296 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Reset CSS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {line-height: 1;}
+a{text-decoration:none;}
+ol, ul {list-style: none;}
+blockquote, q {quotes: none;}
+blockquote:before, blockquote:after,
+q:before, q:after {content: ''; content: none;}
+
+/* remember to define focus styles! */
+:focus {outline: 0; border:#FF9 1px;} 
+
+/* remember to highlight inserts somehow! */
+ins {text-decoration: none;}
+del {text-decoration: line-through;}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {border-collapse: collapse; border-spacing: 0;}
+.clear{clear:both;}
+html, body {height: 100%;}
+/* End CSS Reset */
+
+/*------------------------------------End CSS Reset------------------------------------------------*/
+
+/*------------------------------------------------------*/
+/*          Annotation Editor Styles                    */
+/*------------------------------------------------------*/
+#current {
+	width: 575px;
+	height: 384px;
+	background:url(imgs/appbg.jpg);
+	margin:15px auto;
+	position:relative;
+	-moz-border-radius: 15px;
+	-moz-box-shadow:    0px 0px 12px 6px #000;
+  	-webkit-box-shadow: 0px 0px 12px 6px #000;
+  	box-shadow:         0px 0px 12px 6px #000;
+}
+
+#annotation {
+	background:none;
+	border:none;
+	color:#FFF;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	overflow:hidden;
+	width:auto;
+	height:339px;
+	position:relative;
+	padding-top: 10px;
+	right:0;
+}
+
+#photo_wrapper {
+	float:left;
+	width:230px;
+	margin: 15px;
+	top:0;
+	left:0;
+	position:relative;
+}
+
+#photo {
+	/*max-width: 50%;
+	margin: 20px 0 20px 20px;
+	float:left;*/
+	max-width:230px;
+	max-height:265px;
+}
+
+#caption {
+	/*width:575px;*/
+	width:100%;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:12px;
+	background:none;
+	border:none;
+	color: #FFF;	
+}
+
+#change_font {
+	width:80px;
+	height:35px;
+	position:absolute; 
+	top:349px; 
+	left:0;
+	background:none;
+}
+
+#measure {
+	width:50px;
+	height:30px;
+	text-align:center;
+	border:1px solid;
+	font-size:15px;
+}
+
+#measure_long {
+	width:150px;
+	height:30px;
+	text-align:center;
+	border:1px solid;
+	font-size:15px;
+}
+
+#status { vertical-align:top; }
+			
+.constrain {
+	text-align:center;
+	margin: 0 auto;
+	padding: 20px 0;
+}
+.constrain_home {
+	text-align:center;
+	margin: 0 auto;
+	padding: 125px 0;
+}
+
+.bordered table, .bordered tr,.bordered td {
+	border:1px dotted #CCC;
+}
+
+.piece_name { text-align:left; padding-left:10px; vertical-align:middle; }
+#edit_piece_name {font-size:30px; display:inline; font-weight:normal;}
+.queued_piece { width:210px; word-wrap:break-word; padding-left:3px;}
+.button_set{ width:87px; text-align:right; padding-right:3px;}
+
+.pieceTable { width: 700px;	float:left; }
+.pieceQueue { margin-left:724px; position:fixed; width:300px; text-align:center;}
+.clear {clear:both;}
+.console { width: 700px;	float:left; text-align:center; }
+
+/*------------------------------------------------------*/
+/*                 Navigation Bar                       */
+/*------------------------------------------------------*/
+#nav_table td{
+	border:1px dotted;
+	width:45px;
+	text-align:center;
+}
+
+
+/*------------------------------------------------------*/
+/*                    Columns                           */
+/*------------------------------------------------------*/
+#nav_float {
+	float:left;
+	width:20%
+}
+#info_float {
+	padding-left:2%;
+	padding-right:2%;
+	float:left;
+	width:76%;
+}
+
+
+
+/*------------------------------------------------------*/
+/*                   Body Style                         */
+/*------------------------------------------------------*/
+html { 
+	background: url(imgs/bg_fill.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+body{
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif; 
+	font-size:14px;
+}
+
+.full { width:100%; border:none; }
+
+.full td { padding:8px 0;}
+
+
+/*------------------------------------------------------*/
+/*                   Content Area                       */
+/*------------------------------------------------------*/
+
+.content_box {
+	width:80%;
+	max-width:1024px;
+	min-width:935px;
+	background:#FFF;
+	padding:20px;
+	margin: 20px auto;
+	line-height:30px;
+	overflow:auto;
+	border-radius:15px;
+	-moz-border-radius: 15px;
+	-moz-box-shadow:    0px 0px 12px 6px #ccc;
+  	-webkit-box-shadow: 0px 0px 12px 6px #ccc;
+  	box-shadow:         0px 0px 12px 6px #ccc;
+}
+
+#annotation_error {
+	background-color:rgb(247,227,0);
+	border:1px solid #990000;
+	color:#000000;
+	margin:0 auto;
+	width:575px;
+}
+
+.message_error {
+	padding:4px;
+	background-color:#CE0000;
+	border:1px solid #990000;
+	color:#FFFFFF;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+.float_left {float:left; text-align:left; display:inline-block; width:auto;}
+.float_right {float:right; text-align:right; display:inline-block; width:auto;}
+
+.text_field {
+	width:97%; 
+	border: 1px #999 solid; 
+	font-family:'Open Sans', Arial, Helvetica, sans-serif; 
+	font-size:120%; 
+	background:none;
+	padding:5px;
+}
+
+.button_small {display:inline-block; height:41px; min-width:84px; text-align:center; background:url(imgs/button_sprite_small.png); background-size:300% 41px; color:#FFF; font-size:15px; font-weight:bold; line-height:41px; border:none;}
+.button_small:hover {background-position: -100% 0;}
+.button_small:active {background-position: -200% 0;}
+
+.button {display:inline-block; width:326px; height:164px; text-align:center; padding:auto; background:url(imgs/button_sprite.png); color:#FFF; font-size:35px; font-weight:bold; line-height:163px;}
+.button:hover {background-position: -326px 0;}
+.button:active {background-position: -652px 0;}
+
+.button_small_red {display:inline-block; height:41px; min-width:84px; text-align:center; background:url(imgs/red_button_sprite.png); background-size:300% 41px; color:#FFF; font-size:15px; font-weight:bold; line-height:41px; border:none;}
+.button_small_red:hover {background-position: -100% 0;}
+.button_small_red:active {background-position: -200% 0;}
+
+.up_arrow_button {display:inline-block; height:25px; min-width:25px; text-align:center; background:url(imgs/up_arrow_sprite.png); background-size:300% 25px; color:#FFF; font-size:15px; line-height:25px; border:none;}
+.up_arrow_button:hover {background-position: -100% 0;}
+.up_arrow_button:active {background-position: -200% 0;}
+
+.down_arrow_button {display:inline-block; height:25px; min-width:25px; text-align:center; background:url(imgs/down_arrow_sprite.png); background-size:300% 25px; color:#FFF; font-size:15px; line-height:25px; border:none;}
+.down_arrow_button:hover {background-position: -100% 0;}
+.down_arrow_button:active {background-position: -200% 0;}
+
+.delete_button {display:inline-block; height:25px; min-width:25px; text-align:center; background:url(imgs/delete_sprite.png); background-size:300% 25px; color:#FFF; font-size:15px; line-height:25px; border:none;}
+.delete_button:hover {background-position: -100% 0;}
+.delete_button:active {background-position: -200% 0;}
+
+.foot {text-align:center; background:url(imgs/footer_bg.jpg) repeat-x; height:100%;}
+
+h1,h2,h3 {font-family: "Myriad", "Myriad Pro", "Helvetica",Tahoma, Geneva, sans-serif; }
+
+h1 {font-size:85px; font-weight:bold;}
+h2 {font-size:65px; font-weight:bold;}
+h3 {font-size:30px; display:inline; font-weight:normal;}
+h4 {font-size:20px; display:inline; font-weight:normal;}
+
+
+/*----------------------------------Sticky Footer CSS----------------------------------------------*/
+* {
+margin: 0;
+}
+html, body {
+height: 100%;
+}
+.wrapper {
+min-height: 100%;
+height: auto !important;
+height: 100%;
+margin: 0 auto -63px;
+}
+.footer, .push {
+height: 63px;
+}
