@@ -1,0 +1,46 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "34d230c1-4b7f-419f-b1c5-0b5b75b19515++9391",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "34d230c1-4b7f-419f-b1c5-0b5b75b19515++9391" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "72B26703EBA510D4F1B2631550C3BE416C8B7CAF" : 0,
+    "34d230c1-4b7f-419f-b1c5-0b5b75b19515++9391" : 0,
+    "34d230c1-4b7f-419f-b1c5-0b5b75b19515++3656" : 0,
+    "34d230c1-4b7f-419f-b1c5-0b5b75b19515++5359" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D51E9E06-8393-4876-B062-7E27DD2B330A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "72B26703EBA510D4F1B2631550C3BE416C8B7CAF" : "",
+    "34d230c1-4b7f-419f-b1c5-0b5b75b19515++9391" : "LiveNote.xcodeproj",
+    "34d230c1-4b7f-419f-b1c5-0b5b75b19515++3656" : "Classes",
+    "34d230c1-4b7f-419f-b1c5-0b5b75b19515++5359" : "images"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : ".",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : ".",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn+ssh:\/\/schubert.ece.drexel.edu\/svnProjects",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "34d230c1-4b7f-419f-b1c5-0b5b75b19515++3656"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn+ssh:\/\/schubert.ece.drexel.edu\/svnProjects",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "34d230c1-4b7f-419f-b1c5-0b5b75b19515++5359"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn+ssh:\/\/schubert.ece.drexel.edu\/svnProjects",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "34d230c1-4b7f-419f-b1c5-0b5b75b19515++9391"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/drexelapplab\/LiveNoteCurrent.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "72B26703EBA510D4F1B2631550C3BE416C8B7CAF"
+    }
+  ]
+}

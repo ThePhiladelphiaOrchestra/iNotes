@@ -1,0 +1,127 @@
+iNotes_OpenSource System Install Info
+
+=======================
+== Create Web Server ==
+=======================
+
+Development was done using a LAMP Stack
+- Linux
+- Appache
+- MySQL
+- PHP
+- phpMyAdmin (easy MySQL navigation)
+
+1) Create a MySQL database to store the annotation content.
+	- Set up internal account crudentials
+	- Create database for annotation content
+	- Insert Utility Tables
+		CurrentConcert.sql
+		currentMeasure.sql
+	- Insert Annotation Examples
+		Strauss, Don Juan_ Don Juan.sql
+		Strauss, Don Quixote_ Don Quixote.sql 
+
+2) Copy the contents of 'iNotes_OpenSource/web/' from the project to '/var/www' on the server
+
+3) For more info on the complete system see 'iNotes_OpenSource/documentation/SystemOverview'
+
+
+=======================================
+== Setup Server Paths in Source Code ==
+=======================================
+This is a quick setup guide, read iNotes_OpenSource/documentation/SystemOverview' for more info
+
+
+Multicast Server
+-----------------
+iNotes_OpenSource/multicast-server/transmission/MulticastServerPush.c
+- Edit Parameters:
+	server - LAMP server address (possibly localhost if running on webserver, can run anywhere on same network as clients)
+	user - mysql username   
+	password - mysql password
+	database - content database name
+	kMulticastAddress - multicast broadcast address
+
+
+ControlPanel.php
+--------------
+iNotes_OpenSource/web/ControlPanel.php
+- Look for "EDIT SERVER INFO" comment (4 instances)
+	server - LAMP server address (runs serverside, keep localhost)
+	username - mysql username   
+	password - mysql password
+	database_name - content database name
+
+
+dbConnect.php
+--------------
+iNotes_OpenSource/web/dbConnect.php
+- Look for "EDIT SERVER INFO" comment (1 instance)
+	server - LAMP server address (runs serverside, keep localhost)
+	username - mysql username   
+	password - mysql password
+	database_name - content database name
+- Used by:
+	getData.php
+	getPos.php
+
+
+getPieces.php
+--------------
+iNotes_OpenSource/web/getPieces.php
+- Look for "EDIT SERVER INFO" comment (1 instance)
+	server - LAMP server address (runs serverside, keep localhost)
+	username - mysql username   
+	password - mysql password
+	database_name - content database name
+
+
+ios-multicast-test
+---------------------
+iNotes_OpenSource/multicast-server/ios-multicast-test
+- Confirm multicast group ip address matches the Multicast Server
+
+
+ios-client (the main ios app)
+------------------------------
+iNotes_OpenSource/ios-client/constants.h
+- constants.h contains all setup info
+- Define Release Info:
+		#ifdef IS_YOUR_NEW_RELEASE
+			#define ADDRESS_OF_SERVER @"serverName.yourDomain.org";
+			#define IMAGE_SERVER @"http://serverName.yourDomain.org/images/";   // folder that contains content images on the server
+			#define SSID @"your_ssid"  //will check if its in your network (needed for multicast) for 'live' performance
+			#define INFO_LINK @"http://serverName.yourDomain.org"
+		#endif
+- Branding Images:
+	SPLASH SCREEN - images for the splash/loading screen
+	ALBUM VIEW BG - background image for main piece selection "album scroll" screen
+	FRONT PAGE HELP OVERLAY - overlay that shows what each of the buttons do on the main piece selection "album scroll" screen
+	INFO SCREEN - shows info about the app
+	SLIDE VIEW HELP OVERLAY WITH TRACKS - overlay that shows what each of the buttons do on the annotation view (single track)
+	SLIDE VIEW HELP OVERLAY WITH NO TRACKS - overlay that shows what each of the buttons do on the annotation view (multiple tracks)
+- Fonts
+	You can dynamically change fonts and colors for all portions of the app
+
+=======================
+== Run a Performance ==
+=======================
+
+1) Start Multicast Server Script
+	- compile MulticastServerPush.c (makeServer.sh)
+	- run the compiled object
+2) Open ControlPanel.php from a browser navigating to the web server
+	- Select which pieces are part of your current concert
+	- Select the current "Live" Piece
+	- Select the current "Live" Measure Number
+	- Send real-time push notification style messages to the audience who is connected.
+3) Run the iOS build on the phone
+	- If all is working:
+		- the 'Live' icon shoudl should show up on the live piece.
+		- You should also see all the multicast messages in the console printout
+	- If not working:
+		- Check multicast address/port in all code, Is it the same
+		- Check that your defined ssid is shared among code
+		- Check that you are on that ssid with all running software
+
+
