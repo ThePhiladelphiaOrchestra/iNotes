@@ -1,7 +1,7 @@
 <?php
 	
 	//EDIT SERVER INFO
-	$server="localhost"; $username="inotes"; $password="inotes"; $datebase_name="content"
+	$server="localhost"; $username="inotes"; $password="inotes"; $datebase_name="content";
 
 	if($_POST['formSubmit'] == "Measure Update") {
 		$varCurrentPiece = $_POST['formCurrentPiece'];
@@ -169,7 +169,7 @@ label,a
 
        <?php
        		//EDIT SERVER INFO
-       		$server="localhost"; $username="inotes"; $password="inotes"; $datebase_name="content"
+       		$server="localhost"; $username="inotes"; $password="inotes"; $datebase_name="content";
 		    if(!empty($errorMessage)) {
 			    echo("<p>There was an error with your form:</p>\n");
 			    echo("<ul>" . $errorMessage . "</ul>\n");
@@ -225,7 +225,7 @@ label,a
 			<table border="1">
 			<?php
 				//EDIT SERVER INFO
-				$server="localhost"; $username="inotes"; $password="inotes"; $datebase_name="content"
+				$server="localhost"; $username="inotes"; $password="inotes"; $datebase_name="content";
 				$db = mysql_connect($server,$username,$password);
 				if(!$db) die("Error connecting to MySQL database.");
 				mysql_select_db($database_name ,$db);
@@ -261,7 +261,7 @@ label,a
 			<p></br></p>
 			<label for='formAddPiece'>Add to Live List</label></br>
 				<?
-					$server="localhost"; $username="inotes"; $password="inotes"; $datebase_name="content"
+					$server="localhost"; $username="inotes"; $password="inotes"; $datebase_name="content";
 					$db = mysql_connect($server,$username,$password);
 					if(!$db) die("Error connecting to MySQL database.");
 					mysql_select_db($database_name ,$db);
@@ -339,7 +339,7 @@ label,a
 				
 				<?php
 					//EDIT SERVER INFO
-					$server="localhost"; $username="inotes"; $password="inotes"; $datebase_name="content"
+					$server="localhost"; $username="inotes"; $password="inotes"; $datebase_name="content";
 					$db = mysql_connect($server,$username,$password);
 					if(!$db) die("Error connecting to MySQL database.");
 					mysql_select_db($database_name ,$db);
