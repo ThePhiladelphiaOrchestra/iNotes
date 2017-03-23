@@ -13,7 +13,7 @@ h3 {
 }
 
 .navbar-default {
-    background-color: #222;
+    background-color: #fff;
     border-bottom-color: #EF403A;
     border-bottom-width: 4px;
 }
@@ -21,10 +21,10 @@ h3 {
     font-size: 28px;
 }
 .navbar-default .navbar-brand {
-    color: #d0d3d4;
+    color: #333;
 }
 .navbar-default .navbar-nav > li > a {
-    color: #888;
+    color: #333;
     font-size: 16px;
 }
 .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover, 
@@ -32,6 +32,6 @@ h3 {
     color: #e5e7e9;
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
-    background-color: #333;
-    color: #fff;
+    background-color: #e7e7e7;
+    color: #333;
 }
