@@ -38,26 +38,29 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top"><img src="logo-POA-YNS-line-cmky.jpg" /> LiveNote<small>&reg;</small></a>
+                <a class="navbar-brand page-scroll" href="#page-top">LiveNote<small>&reg;</small></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navbar-text">
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
                         <a class="page-scroll" href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#aboutLiveNote">About LiveNote&reg;</a>
+                        <a class="page-scroll" href="#aboutLiveNote">ABOUT LIVENOTE&reg;</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#aboutINotes">About iNotes</a>
+                        <a class="page-scroll" href="#aboutINotes">ABOUT INOTES</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">Contact Us</a>
+                        <a class="page-scroll" href="#contact">CONTACT US</a>
                     </li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+				      <li><a href="https://www.philorch.org/" target="_blank"><img src="images/logo-POA-YNS-line-cmky.jpg" height="45px" /></a></li>
+    			</ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -69,13 +72,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <h1>iNotes</h1>
+                    <h1 class="title">iNotes</h1>
 			<p>&nbsp;</p>
                     <p>An opensource project created by Drexel University</p>
                     <a class="btn btn-default btn-danger git-button page-scroll" href="#aboutINotes">Learn more about iNotes</a>
                 </div>
                 <div class="col-lg-6">
-			<h1>LiveNote<small>&reg;</small> 1.0 <span class="btn btn-xs btn-warning" style="border-color:#444;">Coming Soon!</span></h1>
+			<h1 class="title">LiveNote<small>&reg;</small> 1.0 <span class="btn btn-xs btn-warning" style="border-color:#444;">Coming Soon!</span></h1>
 			<p>&nbsp;</p>
                     <p>A limited-source implementation of iNotes created by The Philadelphia Orchestra</p>
                     <a class="btn btn-default btn-danger page-scroll" href="#aboutLiveNote">Learn more about LiveNote&reg;</a>
@@ -104,14 +107,14 @@
 		    			<p>Also included is a cross-platform LiveNote mobile app that can be customized and deployed for your organization</p>
 					<p>&nbsp;</p>
 					<h2>How To Get LiveNote<small>&reg;</small></h2>
-					<p>A free license is required to download, install and use the LiveNote&reg; distribution. As part of this license, 
+					<p>A free license is required to download, install and use the LiveNote&reg; distribution. As part of this license,
 						The Philadelphia Orchestra requires attribution and user feedback regarding the use of the LiveNote&reg;
 						distribution and cross-platform mobile application.</p>
 					<p>Please use the Contact Us button to the left to request a license and access to LiveNote&reg;.</p>
 					<p>&nbsp;</p>
 					<h2>Find Out More</h2>
 					<div>
-						<a href="https://www.philorch.org/introducing-livenote%E2%84%A2#/">LiveNote&reg; at the Philadelphia Orchestra</a>
+						<a href="https://www.philorch.org/introducing-livenote%E2%84%A2#/" target="_blank">LiveNote&reg; at the Philadelphia Orchestra</a>
 					</div>
 					<p>&nbsp;</p>
 					<p>LiveNote&reg; was funded by the John S. and James L. Knight Foundation with additional support from the National Endowment for the Arts.</p>
@@ -150,7 +153,7 @@
 						<li>Adjust the font size and brightness for optimal viewing during a performance.</li>
 					</ul>
 					<p>&nbsp;</p>
-					<p>The iNotes project was developed by Drexel University.</p>
+					<p>The iNotes project was developed by Drexel University and was funded by the John S. and James L. Knight Foundation with additional support from the National Endowment for the Arts.</p>
                 </div>
             </div>
         </div>
@@ -163,51 +166,45 @@
                 <div class="col-lg-12">
                 	<div id="contactForm">
 						<h1>Contact Us</h1>
-						<p>Please use the form below to contact us about LiveNote&reg;. </p>
-						<form data-toggle="validator" role="form">
-							<div class="form-group row">
-								<label for="name" class="col-sm-2 col-form-label">Your Name</label>
-								<div class="col-sm-6">
-									<input type="text" class="form-control" id="name" placeholder="Your Name" required />
-								</div>
-								<div class="help-block with-errors"></div>
-							</div>
-							<div class="form-group row">
-								<label for="email" class="col-sm-2 col-form-label">Your Email</label>
-								<div class="col-sm-6">
-									<input type="email" class="form-control" id="email" placeholder="Your Email" required />
-								</div>
-								<div class="help-block with-errors"></div>
-							</div>
-							<div class="form-group row">
-								<label for="org" class="col-sm-2 col-form-label">Your Organization</label>
-								<div class="col-sm-6">
-									<input type="text" class="form-control" id="org" placeholder="Your Organization" required />
-								</div>
-								<div class="help-block with-errors"></div>
-							</div>
-							<div class="form-group row">
-								<label for="org" class="col-sm-2 col-form-label">Comments</label>
-								<div class="col-sm-6">
-									<textarea class="form-control" id="notes" ></textarea>
-								</div>
-							</div>
-							<div class="form-group row">
-								<div class="col-sm-6">
-									<button class="btn btn-danger" id="submit">Submit</button>
-									<input type="text" id="honeypot" style="display:none" />
-								</div>
-							</div>
-						</form>
+						<p>Please visit The Philadelphia Orchestra website to <a href="https://www.philorch.org/livenote-feedback#/" target="_blank">contact us</a> regarding LiveNote&reg;. </p>
+
                     </div>
-                	<div id="thanks">
-                		<h1>Thank you!</h1>
-                		<p>Thank you for your interest! We will contact you regarding LiveNote&reg; shortly.</p>
-                	</div>
                 </div>
             </div>
         </div>
+		<div class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4">
+						<img src="images/logo-footer.png" />
+					</div>
+					<div class="col-lg-4">
+						<h3>&nbsp;</h3>
+						One South Broad Street | 14th Floor
+						<br>Philadelphia PA | 19107
+					</div>
+					<div class="col-lg-4">
+						<h3>CONNECT</h3>
+						<div>
+							<a href="https://twitter.com/philaorchestra" target="_blank">
+								<img src="https://www.philorch.org/images/twitter-icon%2040x40.png" alt="" width="40" height="40" border="0">
+							</a>
+							<a href="http://www.facebook.com/Philorch" target="_blank">
+								<img src="https://www.philorch.org/images/facebook-icon%2040x40.png" alt="Philadelphia Orchestra's Facebook page" width="40" height="40" border="0">
+							</a>
+							<a href="http://www.youtube.com/user/PhilOrchestra" target="_blank" class="extra">
+								<img src="https://www.philorch.org/images/youtube-icon%2040x40.png" alt="" width="40" height="40" border="0">
+							</a>
+							<a href="http://instagram.com/thephiladelphiaorchestra" target="_blank">
+								<img src="https://www.philorch.org/images/instagram-icon%2040x40.png" alt="Instagram" width="40" vspace="8" height="40" border="0">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
     </section>
+
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -220,56 +217,6 @@
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/scrolling-nav.js"></script>
 
-    <script type="text/javascript">
-    	$( document ).ready(function() {
-			$("#thanks").hide();
-
-			clearForm = function(){
-				$('#name').val('');
-				$('#email').val('');
-				$('#org').val('');
-				$('#notes').val('');
-			};
-
-			$("#submit").on("click", function(e) {
-				e.preventDefault();
-				var errorCount = $(".has-error").length;
-				if (errorCount > 0) { return; }
-				if ($("#honeypot").val() != "") { return; }
-
-				var name = $('#name').val();
-				var email = $('#email').val();
-				var org = $('#org').val()
-        		var notes = $('#notes').val();
-
-				$.ajax({
-					url: 'https://formspree.io/cbrittain@philorch.org',
-					method: 'POST',
-					data: {
-						name: name,
-						_replyto: email,
-						email: email,
-						org: org,
-						notes: notes,
-						_subject: 'LiveNote Contact Form',
-					},
-					dataType: "json",
-					success: function() {
-						clearForm();
-						$("#contactForm").hide();
-						$("#thanks").show();
-					},
-					failure: function() {
-						alert('An error has occurred. Please try again or contact someone@philorch.org.');
-					}
-
-       			});
-
-			});
-
-		});
-
-    </script>
 
 </body>
 
