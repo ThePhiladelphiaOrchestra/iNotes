@@ -8,9 +8,8 @@
 	$varButton = "";
 
 	if($formSubmit == "Measure Update") {
-		$varCurrentPiece = $_POST['formCurrentPiece'];
-		$varCurrentMeasure = $_POST['formCurrentMeasure'];
-
+		$varCurrentPiece = !empty($_POST['formCurrentPiece']) ? $_POST['formCurrentPiece'] : null;
+		$varCurrentMeasure = !empty($_POST['formCurrentMeasure']) ? $_POST['formCurrentMeasure'] : null;
 
 		$db = mysqli_connect($server,$username,$password);
 		if(!$db) die("Error connecting to MySQL database.");
@@ -53,8 +52,8 @@
 	}
 
 	if($formSubmit == "  Up  "){
-		$varCurrentPiece = $_POST['formCurrentPiece'];
-		$varCurrentMeasure = $_POST['formCurrentMeasure'];
+		$varCurrentPiece = !empty($_POST['formCurrentPiece']) ? $_POST['formCurrentPiece'] : null;
+		$varCurrentMeasure = !empty($_POST['formCurrentMeasure']) ? $_POST['formCurrentMeasure'] : null;
 
 		$varCurrentMeasure = $varCurrentMeasure + 1;
 
@@ -67,8 +66,8 @@
 	}
 
 	if($formSubmit == "Down"){
-		$varCurrentPiece = $_POST['formCurrentPiece'];
-		$varCurrentMeasure = $_POST['formCurrentMeasure'];
+		$varCurrentPiece = !empty($_POST['formCurrentPiece']) ? $_POST['formCurrentPiece'] : null;
+		$varCurrentMeasure = !empty($_POST['formCurrentMeasure']) ? $_POST['formCurrentMeasure'] : null;
 
 		if($varCurrentMeasure>2){
 			$varCurrentMeasure = $varCurrentMeasure - 1;
@@ -83,8 +82,8 @@
 	}
 
 	if($formSubmit == "Add"){
-		$varCurrentPiece = $_POST['formCurrentPiece'];
-		$varCurrentMeasure = $_POST['formCurrentMeasure'];
+		$varCurrentPiece = !empty($_POST['formCurrentPiece']) ? $_POST['formCurrentPiece'] : null;
+		$varCurrentMeasure = !empty($_POST['formCurrentMeasure']) ? $_POST['formCurrentMeasure'] : null;
 		$varAddPiece = $_POST['formAddPiece'];
 		$varRemovePiece = $_POST['formRemovePiece'];
 
@@ -104,8 +103,8 @@
 	}
 
 	if($formSubmit == "Remove"){
-		$varCurrentPiece = $_POST['formCurrentPiece'];
-		$varCurrentMeasure = $_POST['formCurrentMeasure'];
+		$varCurrentPiece = !empty($_POST['formCurrentPiece']) ? $_POST['formCurrentPiece'] : null;
+		$varCurrentMeasure = !empty($_POST['formCurrentMeasure']) ? $_POST['formCurrentMeasure'] : null;
 		$varAddPiece = $_POST['formAddPiece'];
 		$varRemovePiece = $_POST['formRemovePiece'];
 
