@@ -15,9 +15,9 @@
 
 		$db = mysqli_connect($server,$username,$password);
 		if(!$db) die("Error connecting to MySQL database.");
-		mysqli_select_db($database_name ,$db);
+		mysqli_select_db($db, $database_name);
 
-		$sql = "UPDATE currentMeasure SET currentMeasure=" . PrepSQL($varCurrentMeasure) . ", currentPiece=" . PrepSQL($varCurrentPiece);
+		$sql = "UPDATE currentMeasure SET currentMeasure=" . PrepSQL($db, $varCurrentMeasure) . ", currentPiece=" . PrepSQL($db, $varCurrentPiece);
 		mysqli_query($db, $sql);
 	}
 
@@ -31,9 +31,9 @@
 
 		$db = mysqli_connect($server,$username,$password);
 		if(!$db) die("Error connecting to MySQL database.");
-		mysqli_select_db($database_name ,$db);
+		mysqli_select_db($db, $database_name);
 
-		$sql = "UPDATE currentMeasure SET currentNotification=" . PrepSQL($varPushMessage);
+		$sql = "UPDATE currentMeasure SET currentNotification=" . PrepSQL($db, $varPushMessage);
 		mysqli_query($db, $sql);
 	}
 
@@ -47,9 +47,9 @@
 		
 		$db = mysqli_connect($server,$username,$password);
 		if(!$db) die("Error connecting to MySQL database.");
-		mysqli_select_db($database_name ,$db);
+		mysqli_select_db($db, $database_name);
 
-		$sql = "UPDATE currentMeasure SET currentNotification=" . PrepSQL($varPushMessage);
+		$sql = "UPDATE currentMeasure SET currentNotification=" . PrepSQL($db, $varPushMessage);
 		mysqli_query($db, $sql);
 	}
 
@@ -61,9 +61,9 @@
 
 		$db = mysqli_connect($server,$username,$password);
 		if(!$db) die("Error connecting to MySQL database.");
-		mysqli_select_db($database_name ,$db);
+		mysqli_select_db($db, $database_name);
 
-		$sql = "UPDATE currentMeasure SET currentMeasure=" . PrepSQL($varCurrentMeasure);
+		$sql = "UPDATE currentMeasure SET currentMeasure=" . PrepSQL($db, $varCurrentMeasure);
 		mysqli_query($db, $sql);
 	}
 
@@ -77,9 +77,9 @@
 
 		$db = mysqli_connect($server,$username,$password);
 		if(!$db) die("Error connecting to MySQL database.");
-		mysqli_select_db($database_name ,$db);
+		mysqli_select_db($db, $database_name);
 
-		$sql = "UPDATE currentMeasure SET currentMeasure=" . PrepSQL($varCurrentMeasure);
+		$sql = "UPDATE currentMeasure SET currentMeasure=" . PrepSQL($db, $varCurrentMeasure);
 		mysqli_query($db, $sql);
 	}
 
@@ -95,10 +95,10 @@
 
 		$db = mysqli_connect($server,$username,$password);
 		if(!$db) die("Error connecting to MySQL database.");
-		mysqli_select_db($database_name ,$db);
+		mysqli_select_db($db, $database_name);
 
-		$sql = "INSERT INTO CurrentConcert (PieceName) VALUES (" . PrepSQL($varAddPiece) . ")";
-		mysqli_query($sql);
+		$sql = "INSERT INTO CurrentConcert (PieceName) VALUES (" . PrepSQL($db, $varAddPiece) . ")";
+		mysqli_query($db, $sql);
 
 		$sql = "ALTER TABLE  CurrentConcert ORDER BY  PieceName";
 		mysqli_query($db, $sql);
@@ -112,11 +112,11 @@
 
 		$db = mysqli_connect($server,$username,$password);
 		if(!$db) die("Error connecting to MySQL database.");
-		mysqli_select_db($database_name ,$db);
+		mysqli_select_db($db, $database_name);
 
-		$sql = "DELETE from CurrentConcert WHERE PieceName=" . PrepSQL($varRemovePiece);
+		$sql = "DELETE from CurrentConcert WHERE PieceName=" . PrepSQL($db, $varRemovePiece);
 
-		mysqli_query($sql);
+		mysqli_query($db, $sql);
 		$sql = "ALTER TABLE  CurrentConcert ORDER BY  PieceName";
 		mysqli_query($db, $sql);
 	}
@@ -128,14 +128,14 @@
     //
     // also puts single quotes around the string
     //
-    function PrepSQL($value){
+    function PrepSQL($db, $value){
         // Stripslashes
         if(get_magic_quotes_gpc()) {
             $value = stripslashes($value);
         }
 
         // Quote
-        $value = "'" . mysql_real_escape_string($value) . "'";
+        $value = "'" . mysqli_real_escape_string($db, $value) . "'";
 
         return($value);
     }
