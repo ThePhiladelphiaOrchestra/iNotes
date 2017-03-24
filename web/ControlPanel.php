@@ -3,18 +3,21 @@
 	//EDIT SERVER INFO
 	$server="localhost"; $username="inotes"; $password="inotes"; $datebase_name="content";
 	$formSubmit = !empty($_POST['formSubmit']) ? $_POST['formSubmit'] : null;
+	$varTitle = "";
+	$varBody = "";
+	$varButton = "";
 
 	if($formSubmit == "Measure Update") {
 		$varCurrentPiece = $_POST['formCurrentPiece'];
 		$varCurrentMeasure = $_POST['formCurrentMeasure'];
 
 
-		$db = mysql_connect($server,$username,$password);
+		$db = mysqli_connect($server,$username,$password);
 		if(!$db) die("Error connecting to MySQL database.");
-		mysql_select_db($database_name ,$db);
+		mysqli_select_db($database_name ,$db);
 
 		$sql = "UPDATE currentMeasure SET currentMeasure=" . PrepSQL($varCurrentMeasure) . ", currentPiece=" . PrepSQL($varCurrentPiece);
-		mysql_query($sql);	
+		mysqli_query($db, $sql);
 	}
 
 
@@ -25,12 +28,12 @@
 		$varButton = $_POST['formButtonText'];
 		$varPushMessage = "PUSH|" . $varTitle . "|" . $varBody . "|" . $varType . "|" . $varButton . "|";
 
-		$db = mysql_connect($server,$username,$password);
+		$db = mysqli_connect($server,$username,$password);
 		if(!$db) die("Error connecting to MySQL database.");
-		mysql_select_db($database_name ,$db);
+		mysqli_select_db($database_name ,$db);
 
 		$sql = "UPDATE currentMeasure SET currentNotification=" . PrepSQL($varPushMessage);
-		mysql_query($sql);
+		mysqli_query($db, $sql);
 	}
 
 	if($formSubmit == "Clear"){
@@ -41,12 +44,12 @@
 		$varButton = "";
 		$varPushMessage = "PUSH|" . $varTitle . "|" . $varBody . "|" . $varType . "|" . $varButton . "|";
 		
-		$db = mysql_connect($server,$username,$password);
+		$db = mysqli_connect($server,$username,$password);
 		if(!$db) die("Error connecting to MySQL database.");
-		mysql_select_db($database_name ,$db);
+		mysqli_select_db($database_name ,$db);
 
 		$sql = "UPDATE currentMeasure SET currentNotification=" . PrepSQL($varPushMessage);
-		mysql_query($sql);
+		mysqli_query($db, $sql);
 	}
 
 	if($formSubmit == "  Up  "){
@@ -55,12 +58,12 @@
 
 		$varCurrentMeasure = $varCurrentMeasure + 1;
 
-		$db = mysql_connect($server,$username,$password);
+		$db = mysqli_connect($server,$username,$password);
 		if(!$db) die("Error connecting to MySQL database.");
-		mysql_select_db($database_name ,$db);
+		mysqli_select_db($database_name ,$db);
 
 		$sql = "UPDATE currentMeasure SET currentMeasure=" . PrepSQL($varCurrentMeasure);
-		mysql_query($sql);
+		mysqli_query($db, $sql);
 	}
 
 	if($formSubmit == "Down"){
@@ -76,7 +79,7 @@
 		mysqli_select_db($database_name ,$db);
 
 		$sql = "UPDATE currentMeasure SET currentMeasure=" . PrepSQL($varCurrentMeasure);
-		mysqli_query($sql);
+		mysqli_query($db, $sql);
 	}
 
 	if($formSubmit == "Add"){
@@ -89,32 +92,32 @@
 			$varCurrentMeasure = $varCurrentMeasure - 1;
 		}
 
-		$db = mysql_connect($server,$username,$password);
+		$db = mysqli_connect($server,$username,$password);
 		if(!$db) die("Error connecting to MySQL database.");
-		mysql_select_db($database_name ,$db);
+		mysqli_select_db($database_name ,$db);
 
 		$sql = "INSERT INTO CurrentConcert (PieceName) VALUES (" . PrepSQL($varAddPiece) . ")";
-		mysql_query($sql);
+		mysqli_query($sql);
 
 		$sql = "ALTER TABLE  CurrentConcert ORDER BY  PieceName";
-		mysql_query($sql);
+		mysqli_query($db, $sql);
 	}
 
-	if($_POST['formSubmit'] == "Remove"){
+	if($formSubmit == "Remove"){
 		$varCurrentPiece = $_POST['formCurrentPiece'];
 		$varCurrentMeasure = $_POST['formCurrentMeasure'];
 		$varAddPiece = $_POST['formAddPiece'];
 		$varRemovePiece = $_POST['formRemovePiece'];
 
-		$db = mysql_connect($server,$username,$password);
+		$db = mysqli_connect($server,$username,$password);
 		if(!$db) die("Error connecting to MySQL database.");
-		mysql_select_db($database_name ,$db);
+		mysqli_select_db($database_name ,$db);
 
 		$sql = "DELETE from CurrentConcert WHERE PieceName=" . PrepSQL($varRemovePiece);
 
-		mysql_query($sql);
+		mysqli_query($sql);
 		$sql = "ALTER TABLE  CurrentConcert ORDER BY  PieceName";
-		mysql_query($sql);
+		mysqli_query($db, $sql);
 	}
 
             
@@ -170,17 +173,17 @@ label,a
 
        <?php
        		//EDIT SERVER INFO
-       		$server="localhost"; $username="inotes"; $password="inotes"; $datebase_name="content";
+       		$server="localhost"; $username="inotes"; $password="inotes"; $database_name="content";
 		    if(!empty($errorMessage)) {
 			    echo("<p>There was an error with your form:</p>\n");
 			    echo("<ul>" . $errorMessage . "</ul>\n");
             }
-            $db = mysql_connect($server,$username,$password);
+            $db = mysqli_connect($server,$username,$password);
 			if(!$db) die("Error connecting to MySQL database.");
-			mysql_select_db($database_name ,$db);
+			mysqli_select_db($db, $database_name);
 		    $query = "SELECT currentMeasure FROM currentMeasure";
-			$res = mysql_query($query);
-			while ($row = mysql_fetch_assoc($res)){
+			$res = mysqli_query($db, $query);
+			while ($row = mysqli_fetch_assoc($res)){
 				$varCurrentMeasure = $row['currentMeasure'];
 			}
 			
@@ -190,7 +193,7 @@ label,a
 		<form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
 			<H3>Live Position</H3>
 			<p>
-				<!--<label for='formCurrentPiece'>CurrentPiece</label><input type="text" name="formCurrentPiece" maxlength="100" value="<?=$varCurrentPiece;?>" /> -->
+				<!--<label for='formCurrentPiece'>CurrentPiece</label><input type="text" name="formCurrentPiece" maxlength="100" value="<?php // $varCurrentPiece; ?>" /> -->
 				<label for='formCurrentMeasure'>CurrentMeasure</label></br>
 				<input type="text" name="formCurrentMeasure" maxlength="100" value="<?=$varCurrentMeasure;?>" />
 				<!-- <input type="submit" name="formSubmit" id="up" value="&#x25B2" />
@@ -204,14 +207,14 @@ label,a
 			<p>
 				<label for='formCurrentPiece'>CurrentPiece</label></br>
 				<?
-					$db = mysql_connect($server,$username,$password);
+					$db = mysqli_connect($server,$username,$password);
 					if(!$db) die("Error connecting to MySQL database.");
-					mysql_select_db($database_name ,$db);
+					mysqli_select_db($database_name ,$db);
 		    		$query = "SELECT PieceName FROM CurrentConcert";
-					$res = mysql_query($query);
+					$res = mysqli_query($db, $query);
 					echo "<select name=\"formCurrentPiece\">";
 					//while (($row = mysql_fetch_row($res)) != null)
-					while ($row = mysql_fetch_assoc($res)){
+					while ($row = mysqli_fetch_assoc($res)){
 					    echo "<option value=\"" . $row['PieceName'] ."\"";
 					    if ($varCurrentPiece == $row['PieceName'] )
 					        echo(" selected=\"selected\"");
@@ -227,14 +230,14 @@ label,a
 			<?php
 				//EDIT SERVER INFO
 				$server="localhost"; $username="inotes"; $password="inotes"; $datebase_name="content";
-				$db = mysql_connect($server,$username,$password);
+				$db = mysqli_connect($server,$username,$password);
 				if(!$db) die("Error connecting to MySQL database.");
-				mysql_select_db($database_name ,$db);
+				mysqli_select_db($db, $database_name);
 		    	$query = "SELECT PieceName FROM CurrentConcert";
-				$res = mysql_query($query);
+				$res = mysqli_query($db, $query);
 			  	$i = 0;
 			  	$data = array();
-			  	while($row = mysql_fetch_assoc($res)){
+			  	while($row = mysqli_fetch_assoc($res)){
 			     	$data[] = $row;
 			  	}
 
@@ -263,15 +266,15 @@ label,a
 			<label for='formAddPiece'>Add to Live List</label></br>
 				<?
 					$server="localhost"; $username="inotes"; $password="inotes"; $datebase_name="content";
-					$db = mysql_connect($server,$username,$password);
+					$db = mysqli_connect($server,$username,$password);
 					if(!$db) die("Error connecting to MySQL database.");
-					mysql_select_db($database_name ,$db);
+					mysqli_select_db($database_name ,$db);
 					//SELECT * FROM information_schema.tables
 		    		$query = "SHOW TABLES";
-					$res = mysql_query($query);
+					$res = mysqli_query($db, $query);
 					echo "<select name=\"formAddPiece\">";
 					//while (($row = mysql_fetch_row($res)) != null)
-					while ($row = mysql_fetch_assoc($res)){
+					while ($row = mysqli_fetch_assoc($res)){
 					    echo "<option value=\"" . $row['Tables_in_content'] ."\"";
 					    if ($varRemovePiece == $row['Tables_in_content'] )
 					        echo(" selected=\"selected\"");
@@ -284,13 +287,13 @@ label,a
         		<p></br><p/>
         		<label for='formRemovePiece'>Remove from Live List</label></br>
 				<?
-					$db = mysql_connect($server,$username,$password);
+					$db = mysqli_connect($server,$username,$password);
 					if(!$db) die("Error connecting to MySQL database.");
-					mysql_select_db($database_name ,$db);
+					mysqli_select_db($database_name ,$db);
 		    		$query = "SELECT PieceName FROM CurrentConcert";
-					$res = mysql_query($query);
+					$res = mysqli_query($db, $query);
 					echo "<select name=\"formRemovePiece\">";
-					while ($row = mysql_fetch_assoc($res)){
+					while ($row = mysqli_fetch_assoc($res)){
 					    echo "<option value=\"" . $row['PieceName'] ."\"";
 					    if ($varAddPiece == $row['PieceName'] )
 					        echo(" selected=\"selected\"");
@@ -341,13 +344,13 @@ label,a
 				<?php
 					//EDIT SERVER INFO
 					$server="localhost"; $username="inotes"; $password="inotes"; $datebase_name="content";
-					$db = mysql_connect($server,$username,$password);
+					$db = mysqli_connect($server,$username,$password);
 					if(!$db) die("Error connecting to MySQL database.");
-					mysql_select_db($database_name ,$db);
+					mysqli_select_db($db, $database_name);
 			    	$query = "SELECT currentNotification FROM currentMeasure";
-					$res = mysql_query($query);
+					$res = mysqli_query($db, $query);
 				  	$i = 0;
-				  	while ($row = mysql_fetch_assoc($res)){
+				  	while ($row = mysqli_fetch_assoc($res)){
 						//echo $row['currentNotification'];
 						$notifyParts = explode("|", $row['currentNotification']);
 					}
@@ -355,21 +358,28 @@ label,a
 				?>
 
 				<?php
-					$cnt = 1;
-				    //print the rows
-				    foreach($notifyParts as $data){
-				    	if($cnt==2){
-				    		echo "<tr>";
-				        	echo "<th><div style=\"text-align:center\">".$data."</div></th>";
-				        	echo "</tr>";
-				    	}
-				    	elseif($cnt>2 && $cnt!=4){
-				    		echo "<tr>";
-				        	echo "<td><div style=\"text-align:center\">".$data."</div></td>";
-				        	echo "</tr>";
-				    	}
-				        $cnt=$cnt+1;
-				    }
+                    if (!$notifyParts) {
+                        echo "<tr>";
+                        echo "<th><div style=\"text-align:center\">No available messages</div></th>";
+                        echo "</tr>";
+                    } else {
+                        $cnt = 1;
+                        //print the rows
+                        foreach($notifyParts as $data){
+                            if($cnt==2){
+                                echo "<tr>";
+                                echo "<th><div style=\"text-align:center\">".$data."</div></th>";
+                                echo "</tr>";
+                            }
+                            elseif($cnt>2 && $cnt!=4){
+                                echo "<tr>";
+                                echo "<td><div style=\"text-align:center\">".$data."</div></td>";
+                                echo "</tr>";
+                            }
+                            $cnt=$cnt+1;
+                        }
+                    }
+
 				 ?>
 				</div>
 				</table>
