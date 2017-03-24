@@ -1,7 +1,7 @@
 <?php
 
-$link    = mysql_connect('localhost', 'inotes', 'inotes');
-$charset = mysql_client_encoding($link);
+$link    = mysqli_connect('localhost', 'inotes', 'inotes');
+$charset = mysqli_character_set_name($link);
 echo "The current character set is: $charset\n";
 
 ?>

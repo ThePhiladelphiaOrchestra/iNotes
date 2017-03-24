@@ -4,7 +4,7 @@
     //include("include/no_caching.php"); //located in include folder in directory,
     require_once('dbConnect.php');
     require_once('Encoding.php');
-    connectDB(); //method in dbConnect
+    $con = connectDB(); //method in dbConnect
 
     $xml_output  = "<?xml version=\"1.0\"?>";
 
@@ -12,15 +12,12 @@
 
     $i = 1;
 
-
-    while(!is_null($database = $_GET['database'.$i])){
-
+    while(!empty($_GET['database'.$i])){
+        $database = $_GET['database'.$i];
         $query = "SELECT * FROM `$database`";
-
-        $resMeas = mysql_query($query);
-
-        $rows = mysql_num_rows($resMeas);
-        $cols = mysql_num_fields($resMeas);
+        $resMeas = mysqli_query($con, $query);
+        $rows = mysqli_num_rows($resMeas);
+        $cols = mysqli_num_fields($resMeas);
 
         $xml_output .= "<piece>";
 
@@ -37,17 +34,17 @@
 
             $query = "SELECT * FROM `$database`";
 
-            $resMeas = mysql_query($query);
+            $resMeas = mysqli_query($con, $query);
 
             $xml_output .= "<track>";
-            
             $xml_output .= "<name>";
-            $trackName = mysql_field_name($resMeas,$y);
+            $trackRow = mysqli_fetch_field_direct($resMeas, $y);
+            $trackName = $trackRow->name;
             $xml_output .= $trackName;
             $xml_output .= "</name>";
             
             for($x =  1 ;  $x <=  $rows ; $x++){
-                $row = mysql_fetch_assoc($resMeas);
+                $row = mysqli_fetch_assoc($resMeas);
                 $measure = $row['MeasureNumber'];
                 $time = $row['NumSeconds'];
 
@@ -81,6 +78,6 @@
     $xml_output .= "</concert>";
 
     echo $xml_output;
-    disconnectDB();
+    disconnectDB($con);
 
 ?>
