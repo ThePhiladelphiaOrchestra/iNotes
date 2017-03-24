@@ -1,11 +1,13 @@
 <?php
 	
 	//EDIT SERVER INFO
-	$server="localhost"; $username="inotes"; $password="inotes"; $datebase_name="content";
+	$server="localhost"; $username="inotes"; $password="inotes"; $database_name="content";
 	$formSubmit = !empty($_POST['formSubmit']) ? $_POST['formSubmit'] : null;
 	$varTitle = "";
 	$varBody = "";
 	$varButton = "";
+	$varRemovePiece = "";
+	$varAddPiece = "";
 
 	if($formSubmit == "Measure Update") {
 		$varCurrentPiece = !empty($_POST['formCurrentPiece']) ? $_POST['formCurrentPiece'] : null;
@@ -84,8 +86,8 @@
 	if($formSubmit == "Add"){
 		$varCurrentPiece = !empty($_POST['formCurrentPiece']) ? $_POST['formCurrentPiece'] : null;
 		$varCurrentMeasure = !empty($_POST['formCurrentMeasure']) ? $_POST['formCurrentMeasure'] : null;
-		$varAddPiece = $_POST['formAddPiece'];
-		$varRemovePiece = $_POST['formRemovePiece'];
+		$varAddPiece = !empty($_POST['formAddPiece']) ? $_POST['formAddPiece'] : null;
+		$varRemovePiece = !empty($_POST['formRemovePiece']) ? $_POST['formRemovePiece'] : null;
 
 		if($varCurrentMeasure>2){
 			$varCurrentMeasure = $varCurrentMeasure - 1;
@@ -105,8 +107,8 @@
 	if($formSubmit == "Remove"){
 		$varCurrentPiece = !empty($_POST['formCurrentPiece']) ? $_POST['formCurrentPiece'] : null;
 		$varCurrentMeasure = !empty($_POST['formCurrentMeasure']) ? $_POST['formCurrentMeasure'] : null;
-		$varAddPiece = $_POST['formAddPiece'];
-		$varRemovePiece = $_POST['formRemovePiece'];
+		$varAddPiece = !empty($_POST['formAddPiece']) ? $_POST['formAddPiece'] : null;
+		$varRemovePiece = !empty($_POST['formRemovePiece']) ? $_POST['formRemovePiece'] : null;
 
 		$db = mysqli_connect($server,$username,$password);
 		if(!$db) die("Error connecting to MySQL database.");
