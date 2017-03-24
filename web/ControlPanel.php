@@ -207,21 +207,21 @@ label,a
 			</p>
 			<p>
 				<label for='formCurrentPiece'>CurrentPiece</label></br>
-				<?
+				<?php
 					$db = mysqli_connect($server,$username,$password);
 					if(!$db) die("Error connecting to MySQL database.");
-					mysqli_select_db($database_name ,$db);
+					mysqli_select_db($db, $database_name);
 		    		$query = "SELECT PieceName FROM CurrentConcert";
 					$res = mysqli_query($db, $query);
-					echo "<select name=\"formCurrentPiece\">";
+					echo '<select name="formCurrentPiece">';
 					//while (($row = mysql_fetch_row($res)) != null)
 					while ($row = mysqli_fetch_assoc($res)){
-					    echo "<option value=\"" . $row['PieceName'] ."\"";
+					    echo '<option value="' . $row['PieceName'] . '"';
 					    if ($varCurrentPiece == $row['PieceName'] )
-					        echo(" selected=\"selected\"");
-					    echo ">\"".$row['PieceName']."\"</option>";
+					        echo(' selected="selected"');
+					    echo '>"'.$row['PieceName'].'"</option>';
 					}
-					echo "</select>";
+					echo '</select>';
         		?>
 			</p>
 			<input type="submit" name="formSubmit" value="Measure Update" />
@@ -236,13 +236,17 @@ label,a
 				mysqli_select_db($db, $database_name);
 		    	$query = "SELECT PieceName FROM CurrentConcert";
 				$res = mysqli_query($db, $query);
-			  	$i = 0;
-			  	$data = array();
-			  	while($row = mysqli_fetch_assoc($res)){
-			     	$data[] = $row;
-			  	}
-
-  				$colNames = array_keys(reset($data))
+                $i = 0;
+                $data = array();
+                while($row = mysqli_fetch_assoc($res)){
+                    $data[] = $row;
+                }
+                
+                if ($data) {
+                    $colNames = array_keys(reset($data));
+                } else {
+        			$colNames = [];
+                }
 
 			?>
 			<tr>
@@ -265,21 +269,22 @@ label,a
 
 			<p></br></p>
 			<label for='formAddPiece'>Add to Live List</label></br>
-				<?
+				<?php
 					$server="localhost"; $username="inotes"; $password="inotes"; $datebase_name="content";
 					$db = mysqli_connect($server,$username,$password);
 					if(!$db) die("Error connecting to MySQL database.");
-					mysqli_select_db($database_name ,$db);
+					mysqli_select_db($db, $database_name);
 					//SELECT * FROM information_schema.tables
 		    		$query = "SHOW TABLES";
 					$res = mysqli_query($db, $query);
-					echo "<select name=\"formAddPiece\">";
-					//while (($row = mysql_fetch_row($res)) != null)
+					echo '<select name="formAddPiece">';
+					
 					while ($row = mysqli_fetch_assoc($res)){
-					    echo "<option value=\"" . $row['Tables_in_content'] ."\"";
+    					var_dump($row);
+					    echo '<option value="' . $row['Tables_in_content'] .'"';
 					    if ($varRemovePiece == $row['Tables_in_content'] )
-					        echo(" selected=\"selected\"");
-					    echo ">\"".$row['Tables_in_content']."\"</option>";
+					        echo(' selected="selected"');
+					    echo '>"'.$row['Tables_in_content'].'"</option>';
 					}
 					echo "</select>";
         		?></br>
@@ -287,10 +292,10 @@ label,a
         		
         		<p></br><p/>
         		<label for='formRemovePiece'>Remove from Live List</label></br>
-				<?
+				<?php
 					$db = mysqli_connect($server,$username,$password);
 					if(!$db) die("Error connecting to MySQL database.");
-					mysqli_select_db($database_name ,$db);
+					mysqli_select_db($db, $database_name);
 		    		$query = "SELECT PieceName FROM CurrentConcert";
 					$res = mysqli_query($db, $query);
 					echo "<select name=\"formRemovePiece\">";
@@ -355,7 +360,6 @@ label,a
 						//echo $row['currentNotification'];
 						$notifyParts = explode("|", $row['currentNotification']);
 					}
-				  	
 				?>
 
 				<?php
