@@ -91,7 +91,7 @@ if ((isset($_POST["submitted_form"])) && ($_POST["submitted_form"] == "image_upl
 			
 			include("globals.php");
 			//Select the iNotes database
-			$success = mysql_select_db($dbname);
+			$success = mysqli_select_db($link, $dbname);
 			
 			
 			session_start();
@@ -102,7 +102,7 @@ if ((isset($_POST["submitted_form"])) && ($_POST["submitted_form"] == "image_upl
 			//$newAnnotation = $contentMatches[0]."$".$_SESSION["photo"].", ";
 			
 			//Sanatize the user input for the SQL query
-			$newAnnotation = mysql_escape_string($newAnnotation);
+			$newAnnotation = mysqli_escape_string($newAnnotation);
 			
 			$response =  mysql_query("UPDATE `" . $_SESSION["name"] . "` SET `" . $_SESSION["track"] . "` = '" . $newAnnotation . "' WHERE MeasureNumber = '" . $_SESSION["measure"] . "'");
 			

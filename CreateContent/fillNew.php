@@ -15,7 +15,8 @@ if ( isset($_POST["submit"]) )
         else 
 		{
 			//Grab file extension and make sure it's .csv
-			$extension = end(explode(".", $_FILES["file"]["name"]));
+			$filePieces = explode(".", $_FILES["file"]["name"]);
+			$extension = end($filePieces);
 			if(strtolower($extension) != "csv")
 				header("Location: uploadCSV.php?error=9");				
 			else
@@ -34,8 +35,11 @@ if ( isset($_POST["submit"]) )
 					header("Location: uploadCSV.php?error=10");
 				else // The column headers are alright, continue
 				{
-					$table_create_query = "CREATE TABLE `" . $_SESSION['name'] . "`(MeasureNumber int, NumSeconds double";
+    				$sessionName = !empty($_SESSION['name']) ? $_SESSION['name'] : null;
+    				
+					$table_create_query = "CREATE TABLE `" . $sessionName . "`(MeasureNumber int, NumSeconds double";
 					$includedTracks = 0;
+					
 					// If the user included some tracks, append the extra columns to the SQL call
 					if ( count($firstRow) > 2 )
 					{					
@@ -47,17 +51,15 @@ if ( isset($_POST["submit"]) )
 						}
 					}
 					
-					
 					$table_create_query = $table_create_query.")"; //Close the sql call
 					
 					//echo("Table Create Query: ".$table_create_query."<br/>");
 										
 					// Let's create the table!
 					// Select the iNotes database
-					mysql_select_db($dbname);
-					
-					$success = mysql_query($table_create_query);
-					
+					mysqli_select_db($link, $dbname_live);
+					$success = mysqli_query($link, $table_create_query);
+
 					if ( !$success )
 						header("Location: uploadCSV.php?error=11");  // If we couldn't create the table, tell them to try again
 					else
@@ -78,18 +80,18 @@ if ( isset($_POST["submit"]) )
 								if ( $includedTracks > 0 )
 								{						
 									for ($i=2; $i<2+$includedTracks; $i++)
-										$insert_current_row = $insert_current_row . ", " . ( $currentLine[$i] != '' ? ("'".mysql_real_escape_string($currentLine[$i])."'" ): 'NULL' );
+										$insert_current_row = $insert_current_row . ", " . ( $currentLine[$i] != '' ? ("'".mysqli_real_escape_string($link, $currentLine[$i])."'" ): 'NULL' );
 								}
 								$insert_current_row = $insert_current_row . ")";
 								//echo("Compiled query: ".$insert_current_row."<br/>");
 								
 								
-								$success = mysql_query($insert_current_row);
+								$success = mysqli_query($link, $insert_current_row);
 								
 								//echo($insert_current_row);
 								//|| $currentLine[0] != $measure
 								if (!$success ) {
-									mysql_query("DROP TABLE `".$_SESSION['name']."`");
+									mysqli_query($link, "DROP TABLE `".$_SESSION['name']."`");
 									header("Location: uploadCSV.php?error=12&failMeasure=".$currentLine[0]);
 								}
 							}

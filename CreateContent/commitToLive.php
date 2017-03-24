@@ -14,17 +14,17 @@ include("globals.php");
 		$_SESSION['name'] = $_SESSION['tableNames'][$index];
 		
 		//Connect to the iNotes database
-		mysql_select_db($dbname_live);
+		mysqli_select_db($link, $dbname_live);
 		
 		//Drop the table from the Live database if it exists
-		$exists = (mysql_num_rows( mysql_query("SHOW TABLES LIKE '".$_SESSION['name']."'") ) == 1);
+		$exists = (mysqli_num_rows( mysqli_query($link, "SHOW TABLES LIKE '".$_SESSION['name']."'") ) == 1);
 		if ($exists)
-			mysql_query('DROP TABLE '.$dbname_live.'.`'.$_SESSION['name'].'`');
+			mysqli_query($link, 'DROP TABLE '.$dbname_live.'.`'.$_SESSION['name'].'`');
 
 		//echo('CREATE TABLE `'.$_SESSION['name'].'` LIKE '.$dbname.'.`'.$_SESSION['name'].'`');
 		//die();
 		//Create  the table in the live database	
-		$success = mysql_query('CREATE TABLE '.$dbname_live.'.`'.$_SESSION['name'].'` LIKE '.$dbname.'.`'.$_SESSION['name'].'`');
+		$success = mysqli_query($link, 'CREATE TABLE '.$dbname_live.'.`'.$_SESSION['name'].'` LIKE '.$dbname.'.`'.$_SESSION['name'].'`');
 		
 		if (!$success)
 			header('Location: selectEdit.php?error=1050');
@@ -32,7 +32,7 @@ include("globals.php");
 		{
 			//Add all rows from the dev database table to the live database table
 			//$success = mysql_query('CREATE TABLE `'.$_SESSION['name'].'` LIKE '.$dbname.'.`'.$_SESSION['name'].'`');	
-			$success = mysql_query('INSERT INTO '.$dbname_live.'.`'.$_SESSION['name'].'` SELECT * FROM '.$dbname.'.`'.$_SESSION['name'].'`');	
+			$success = mysqli_query($link, 'INSERT INTO '.$dbname_live.'.`'.$_SESSION['name'].'` SELECT * FROM '.$dbname.'.`'.$_SESSION['name'].'`');	
 			if (!$success)
 				header('Location: selectEdit.php?error=1076');
 		}

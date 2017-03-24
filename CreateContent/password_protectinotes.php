@@ -49,6 +49,7 @@ $LOGIN_INFORMATION = array(
 // Add login/password pairs below, like described above
 // NOTE: all rows except last must have comma "," at the end of line
 $LOGIN_INFORMATION = array(
+    'root'
 );
 
 // request login? true - show login and password boxes, false - password box only
@@ -158,7 +159,7 @@ if (isset($_POST['access_password'])) {
     if ($_COOKIE['verify'] == md5($lp)) {
       $found = true;
       // prolong timeout
-      if (TIMEOUT_CHECK_ACTIVITY) {
+      if ($TIMEOUT_CHECK_ACTIVITY) {
         setcookie("verify", md5($lp), $timeout, '/');
       }
       break;

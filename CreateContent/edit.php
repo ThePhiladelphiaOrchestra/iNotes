@@ -10,10 +10,10 @@ include("systemPHPFunctions.php");
 		$name = $_SESSION['name'];
 		include("globals.php");
 		// Connect to the DB and grab the number of measures
-		$success = mysql_select_db($dbname);
-		$measures = mysql_query("SELECT COUNT(MeasureNumber) FROM `" . $name . "`");
+		$db = mysqli_select_db($link, $dbname_live);
+		$measures = mysqli_query($link, "SELECT COUNT(MeasureNumber) FROM `" . $name . "`");
 		if ($measures) {
-			$measures = mysql_fetch_row($measures);
+			$measures = mysqli_fetch_row($measures);
 			$measures = $measures[0];
 			$_SESSION['measures'] = $measures;
 		}
@@ -21,10 +21,12 @@ include("systemPHPFunctions.php");
 			echo ("<center><h4 style=\"color:red; font-weight:bold; font-size: 18px; padding-top:20px;\">ERROR: Upload failed.  Please return to <a href='create.php'>Create</a> and try again.</h4></center>");
 			unset($_SESSION['name']);
 		}	
-		mysql_close($link);
+		mysqli_close($link);
 	}
 	else
 	{
+    	$name = '';
+    	$measures = '';
 		echo ("<center><h4 style=\"color:red; font-weight:bold; font-size: 18px; padding-top:20px;\">ERROR: Session doesn't exist.  Please return to <a href='selectEdit.php'>Selector</a> and choose a piece.</h4></center>");
 	}
 ?>
@@ -55,7 +57,7 @@ include("systemPHPFunctions.php");
 			<?php
                 //If the piece already existed, tell them, then take it away once they've
                 //started editing it
-                if($_SESSION['exists']) {
+                if(!empty($_SESSION['exists'])) {
                     echo ('Piece "' .  $name . '" already existed.<br/>');
                     $_SESSION['exists'] = true;
 					unset($_SESSION['exists']);

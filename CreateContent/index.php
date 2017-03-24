@@ -1,6 +1,5 @@
 <?php 
 include("password_protectinotes.php"); 
-log('TestMessage');
 session_start();
 $_SESSION = array();
 session_destroy();

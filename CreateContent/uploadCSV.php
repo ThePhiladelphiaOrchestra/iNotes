@@ -1,5 +1,6 @@
 <?php 
 include("password_protectinotes.php"); 
+$failMeasure = !empty($_REQUEST['failMeasure']) ? $_REQUEST['failMeasure'] : null;
 
 //Populate PHP upload error messages so we can give useful feedback
 $upload_errors = array( 
@@ -11,11 +12,11 @@ $upload_errors = array(
     UPLOAD_ERR_NO_TMP_DIR  => "No temporary directory.", 
     UPLOAD_ERR_CANT_WRITE  => "Can't write to disk.", 
     UPLOAD_ERR_EXTENSION   => "File upload stopped by extension.", 
-    UPLOAD_ERR_EMPTY       => "File is empty.", // add this to avoid an offset 
+    // UPLOAD_ERR_EMPTY       => "File is empty.", // add this to avoid an offset 
 	9	   				   => "Incorrect filetype.  Please save file as .csv",
 	10					   => "Incorrect column headers.  Please use \"MeasureNumber\" and \"NumSeconds\"",
 	11					   => "Couldn't create table in database.  Please try again.",
-	12					   => "Failure on insert with measure #".$_REQUEST['failMeasure']
+	12					   => "Failure on insert with measure #".$failMeasure
   ); 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

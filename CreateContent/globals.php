@@ -5,7 +5,7 @@ $dbname="content_dev";
 $dbname_live="content";
 $info_schemas_name="information_schema";
 
-$link = mysql_connect('localhost',$user,$pswd);
+$link = mysqli_connect('localhost',$user,$pswd);
 
 /**** To select info schemas ****/
 //Select the information_schemas database

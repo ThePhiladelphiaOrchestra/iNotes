@@ -3,12 +3,12 @@ session_start();
 include("globals.php");
 
 //Select the iNotes database
-$success = mysql_select_db($dbname);
+$success = mysqli_select_db($link, $dbname);
 
-$trackName = mysql_escape_string($_REQUEST['track']);
+$trackName = mysqli_escape_string($_REQUEST['track']);
 
 //Send the query with the appropriate variables	
-$response =  mysql_query("ALTER TABLE `".$_SESSION['name']."` DROP COLUMN `".$trackName."`");
+$response =  mysqli_query($link, "ALTER TABLE `".$_SESSION['name']."` DROP COLUMN `".$trackName."`");
 
 //Let the user know whether or not the update succeded
 if ($response == false)
@@ -16,5 +16,5 @@ if ($response == false)
 else
 	echo ("Annotation Update Succeeded");
 
-mysql_close($link);	
+mysqli_close($link);	
 ?>

@@ -10,26 +10,30 @@ function printSQLTracks($trks)
 	return $call;
 }
 
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 include("globals.php");
 //Select the information_schemas database
-$success = mysql_select_db($info_schemas_name);
+$success = mysqli_select_db($link, $info_schemas_name);
+
+$name = !empty($_SESSION['name']) ? $_SESSION['name'] : '';
 
 //Collect field names, excluding measure # and numSeconds
-$columns = mysql_query("
+$columns = mysqli_query($link, "
 SELECT column_name FROM `COLUMNS` 
 WHERE TABLE_SCHEMA ='".$dbname."'
-AND table_name='" . $_SESSION["name"] . "' 
+AND table_name='" . $name . "' 
 AND column_name<>'MeasureNumber' 
 AND column_name<>'NumSeconds'
 ");
 
-if ( mysql_num_rows($columns) > 0 )
+if ( mysqli_num_rows($columns) > 0 )
 {
 	//Fill an array with the track names
 	$tracks = array();
 	$index = 0;
-	while($current = mysql_fetch_row($columns))
+	while($current = mysqli_fetch_row($columns))
 	{
 		$tracks[$index] = $current[0];
 		$index++;
@@ -37,14 +41,14 @@ if ( mysql_num_rows($columns) > 0 )
 	
 
 	//Select the iNotes database
-	$success = mysql_select_db($dbname);
+	$success = mysqli_select_db($link, $dbname);
 	
-	$annotatedMeasures = mysql_query("
+	$annotatedMeasures = mysql_query($link, "
 	SELECT * 
 	FROM `".$_SESSION["name"]."` 
 	WHERE".printSQLTracks($tracks)."");
 	
-	if ( $annotatedMeasures && (mysql_num_rows($annotatedMeasures) > 0) )
+	if ( $annotatedMeasures && (mysqli_num_rows($annotatedMeasures) > 0) )
 	{
 	
 		echo ('<table id="nav_table"><tr><td>#</td><td colspan="'.count($tracks).'">Track</td></tr><tr><td></td>');
@@ -52,7 +56,7 @@ if ( mysql_num_rows($columns) > 0 )
 			echo("<td>(".chr(97+$i).")</td>");	
 		echo('</tr>');
 		
-		while($current = mysql_fetch_row($annotatedMeasures))
+		while($current = mysqli_fetch_row($annotatedMeasures))
 		{
 			echo ('
 								<tr id="navRow'.$current[0].'"><td>'.$current[0].'</td>');
@@ -83,5 +87,5 @@ if ( mysql_num_rows($columns) > 0 )
 else
 	echo ("No tracks. Please add one.");
 
-mysql_close($link);	
+mysqli_close($link);	
 ?>
