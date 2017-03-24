@@ -10,6 +10,7 @@ if ! [ -L /var/livenote ]; then
   rm -rf /var/livenote
   git clone https://github.com/ThePhiladelphiaOrchestra/iNotes.git /var/livenote
   ln -fs /var/livenote/web /var/www/html
+  ln -fs /var/livenote/CreateContent /var/www/html
   service apache2 restart
 fi
 
