@@ -2,8 +2,9 @@
 	
 	//EDIT SERVER INFO
 	$server="localhost"; $username="inotes"; $password="inotes"; $datebase_name="content";
+	$formSubmit = !empty($_POST['formSubmit']) ? $_POST['formSubmit'] : null;
 
-	if($_POST['formSubmit'] == "Measure Update") {
+	if($formSubmit == "Measure Update") {
 		$varCurrentPiece = $_POST['formCurrentPiece'];
 		$varCurrentMeasure = $_POST['formCurrentMeasure'];
 
@@ -17,7 +18,7 @@
 	}
 
 
-	if($_POST['formSubmit'] == "Push Message"){
+	if($formSubmit == "Push Message"){
    		$varTitle = $_POST['formMessageTitle'];
 		$varBody = $_POST['formMessageBody'];
 		$varType = $_POST['formMessageType'];
@@ -32,7 +33,7 @@
 		mysql_query($sql);
 	}
 
-	if($_POST['formSubmit'] == "Clear"){
+	if($formSubmit == "Clear"){
     	//debug_to_console("SubmitMessage");
    		$varTitle = "";
 		$varBody = "";
@@ -48,7 +49,7 @@
 		mysql_query($sql);
 	}
 
-	if($_POST['formSubmit'] == "  Up  "){
+	if($formSubmit == "  Up  "){
 		$varCurrentPiece = $_POST['formCurrentPiece'];
 		$varCurrentMeasure = $_POST['formCurrentMeasure'];
 
@@ -62,7 +63,7 @@
 		mysql_query($sql);
 	}
 
-	if($_POST['formSubmit'] == "Down"){
+	if($formSubmit == "Down"){
 		$varCurrentPiece = $_POST['formCurrentPiece'];
 		$varCurrentMeasure = $_POST['formCurrentMeasure'];
 
@@ -70,15 +71,15 @@
 			$varCurrentMeasure = $varCurrentMeasure - 1;
 		}
 
-		$db = mysql_connect($server,$username,$password);
+		$db = mysqli_connect($server,$username,$password);
 		if(!$db) die("Error connecting to MySQL database.");
-		mysql_select_db($database_name ,$db);
+		mysqli_select_db($database_name ,$db);
 
 		$sql = "UPDATE currentMeasure SET currentMeasure=" . PrepSQL($varCurrentMeasure);
-		mysql_query($sql);
+		mysqli_query($sql);
 	}
 
-	if($_POST['formSubmit'] == "Add"){
+	if($formSubmit == "Add"){
 		$varCurrentPiece = $_POST['formCurrentPiece'];
 		$varCurrentMeasure = $_POST['formCurrentMeasure'];
 		$varAddPiece = $_POST['formAddPiece'];
