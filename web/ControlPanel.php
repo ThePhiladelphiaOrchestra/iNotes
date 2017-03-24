@@ -97,10 +97,10 @@
 		if(!$db) die("Error connecting to MySQL database.");
 		mysqli_select_db($db, $database_name);
 
-		$sql = "INSERT INTO CurrentConcert (PieceName) VALUES (" . PrepSQL($db, $varAddPiece) . ")";
+		$sql = 'INSERT INTO CurrentConcert (`PieceName`, `Order`) VALUES (' . PrepSQL($db, $varAddPiece) . ', 0)';
 		mysqli_query($db, $sql);
 
-		$sql = "ALTER TABLE  CurrentConcert ORDER BY  PieceName";
+		$sql = "ALTER TABLE CurrentConcert ORDER BY PieceName";
 		mysqli_query($db, $sql);
 	}
 
