@@ -16,10 +16,10 @@
 		$measures = $_REQUEST['measures'];
 		
 		//Select the iNotes database
-		$success = mysql_select_db($dbname);
+		$success = mysqli_select_db($link, $dbname);
 		
 		//Create a session variable from the POST name string
-		$_SESSION['name'] = mysql_real_escape_string(trim( $_POST['name'] ));
+		$_SESSION['name'] = mysqli_real_escape_string($link, trim( $_POST['name'] ));
 		
 		//Try to create the new piece - EDIT: Just check if it exists.
 		//store in session whether or not it already existed

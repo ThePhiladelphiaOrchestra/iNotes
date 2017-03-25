@@ -6,7 +6,7 @@ include("globals.php");
 $success = mysqli_select_db($link, $dbname);
 
 //Sanatize the user input for the SQL query
-$newTrack = mysqli_escape_string($_POST["newTrack"]);
+$newTrack = mysqli_escape_string($link, $_POST["newTrack"]);
 
 //Send the query with the appropriate variables	
 $response =  mysqli_query($link, "ALTER TABLE `" . $_SESSION["name"] . "`

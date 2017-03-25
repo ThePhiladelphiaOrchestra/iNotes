@@ -12,9 +12,7 @@ else
 
 //Sanatize the user input for the SQL query
 $newAnnotation = mysqli_escape_string($link, $newAnnotation);
-$sql_query_string = ("UPDATE `" . $_SESSION["name"] . "` 
-SET `" . $_SESSION["track"] . "` = '" . $newAnnotation . "' 
-WHERE MeasureNumber = '" . $_SESSION["measure"] . "'");
+$sql_query_string = ("UPDATE `" . $_SESSION["name"] . "` SET `" . $_SESSION["track"] . "` = '" . $newAnnotation . "' WHERE MeasureNumber = '" . $_SESSION["measure"] . "'");
 
 //Send the query with the appropriate variables	
 mysqli_query($link, "SET NAMES 'utf8'");
