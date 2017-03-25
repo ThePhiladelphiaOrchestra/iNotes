@@ -10,7 +10,7 @@ include("systemPHPFunctions.php");
 		$name = $_SESSION['name'];
 		include("globals.php");
 		// Connect to the DB and grab the number of measures
-		$db = mysqli_select_db($link, $dbname_live);
+		$db = mysqli_select_db($link, $dbname);
 		$measures = mysqli_query($link, "SELECT COUNT(MeasureNumber) FROM `" . $name . "`");
 		if ($measures) {
 			$measures = mysqli_fetch_row($measures);

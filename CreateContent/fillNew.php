@@ -57,7 +57,7 @@ if ( isset($_POST["submit"]) )
 										
 					// Let's create the table!
 					// Select the iNotes database
-					mysqli_select_db($link, $dbname_live);
+					mysqli_select_db($link, $dbname);
 					$success = mysqli_query($link, $table_create_query);
 
 					if ( !$success )

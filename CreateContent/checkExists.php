@@ -8,7 +8,7 @@ if ($_POST['name'] == "" || $_POST['name'] == "Enter name...") {
     header('Location: create.php?error=1');
 } else {
     //Select the iNotes database
-    $success = mysqli_select_db($link, $dbname_live);
+    $success = mysqli_select_db($link, $dbname);
 
     //Create a session variable from the POST name string
     $_SESSION['name'] = mysqli_real_escape_string($link, trim( $_POST['name'] ));
