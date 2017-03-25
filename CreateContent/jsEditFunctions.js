@@ -44,9 +44,9 @@ function showTrack(track)
 function showMeasure(measure)
 {
 	currentMeasure=measure;
-	if (measure === "" || !trackSelected)
-	{
-		document.getElementById("measure_content").value="Please enter a measure number and select a track...";
+	if (measure === "" || !trackSelected) {
+		// document.getElementById("measure_content").value="Please enter a measure number and select a track...";
+		alert("Please enter a measure number and select a track...");
 		return;
 	}
 	updateSession('up-to-date');
@@ -143,7 +143,7 @@ function updatePage(rawAnnotation)
 		document.getElementById("annotation").style.width = "257px";
 		/*document.getElementById("photo").style.display = "inline-block";*/
 		document.getElementById("photo_wrapper").style.display = "block";
-		document.getElementById("photo").src = ( "../images/" + rawAnnotation.substring(photoIndex+1, captionIndex) );
+		document.getElementById("photo").src = ( "../web/images/" + rawAnnotation.substring(photoIndex+1, captionIndex) );
 		/*document.getElementById("caption").style.display = "inline-block";*/
 		document.getElementById("caption").value = rawAnnotation.substring(captionIndex+1);
         //document.getElementById("captionLabel").value = "Image Caption:";
@@ -194,7 +194,9 @@ function jumpTo(track, measure)
 	selectTrack(track);
 	document.getElementById("measure").value = measure;
 	showMeasure(measure);
-	document.getElementById("navRow"+measure).style.background = "rgb(255, 249, 203)";
+	if (document.getElementById("navRow"+measure) !== null) {
+        document.getElementById("navRow"+measure).style.background = "rgb(255, 249, 203)";
+    }
 }
 
 //For use with the annotation navigator and page callback.
