@@ -18,6 +18,8 @@ if [ ! -f /var/log/databasesetup ]; then
 	echo "CREATE USER 'inotes'@'localhost' IDENTIFIED BY 'inotes'" | mysql --defaults-extra-file=/etc/mysql/debian.cnf
     echo "CREATE DATABASE content" | mysql --defaults-extra-file=/etc/mysql/debian.cnf
     echo "GRANT ALL ON content.* TO 'inotes'@'localhost'" | mysql --defaults-extra-file=/etc/mysql/debian.cnf
+    echo "CREATE DATABASE content_dev" | mysql --defaults-extra-file=/etc/mysql/debian.cnf
+    echo "GRANT ALL ON content_dev.* TO 'inotes'@'localhost'" | mysql --defaults-extra-file=/etc/mysql/debian.cnf
     echo "flush privileges" | mysql --defaults-extra-file=/etc/mysql/debian.cnf
 
     mysql --defaults-extra-file=/etc/mysql/debian.cnf content < /var/livenote/database/CurrentConcert.sql
