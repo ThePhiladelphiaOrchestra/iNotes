@@ -1,5 +1,5 @@
-<?php ini_set("memory_limit", "200000000"); // for large images so that we do not get "Allowed memory exhausted"?>
-<?php
+<?php ini_set("memory_limit", "200000000"); // for large images so that we do not get "Allowed memory exhausted"
+
 // upload the file
 if ((isset($_POST["submitted_form"])) && ($_POST["submitted_form"] == "image_upload_form")) {
 	
@@ -13,15 +13,15 @@ if ((isset($_POST["submitted_form"])) && ($_POST["submitted_form"] == "image_upl
 	
 			
 			// if uploaded image was JPG/JPEG
-			if($_FILES["image_upload_box"]["type"] == "image/jpeg" || $_FILES["image_upload_box"]["type"] == "image/pjpeg"){	
+			if ($_FILES["image_upload_box"]["type"] == "image/jpeg" || $_FILES["image_upload_box"]["type"] == "image/pjpeg") {
 				$image_source = imagecreatefromjpeg($_FILES["image_upload_box"]["tmp_name"]);
 			}		
 			// if uploaded image was GIF
-			if($_FILES["image_upload_box"]["type"] == "image/gif"){	
+			if ($_FILES["image_upload_box"]["type"] == "image/gif"){
 				$image_source = imagecreatefromgif($_FILES["image_upload_box"]["tmp_name"]);
 			}				
 			// if uploaded image was PNG
-			if($_FILES["image_upload_box"]["type"] == "image/x-png" || $_FILES["image_upload_box"]["type"] == "image/png"){
+			if ($_FILES["image_upload_box"]["type"] == "image/x-png" || $_FILES["image_upload_box"]["type"] == "image/png") {
 				$image_source = imagecreatefrompng($_FILES["image_upload_box"]["tmp_name"]);
 				// turning off alpha blending (to ensure alpha channel information 
 	        // is preserved, rather than removed (blending with the rest of the 
@@ -34,33 +34,27 @@ if ((isset($_POST["submitted_form"])) && ($_POST["submitted_form"] == "image_upl
 			}
 			
 	
-			$remote_photo_file = "../images/".$_FILES["image_upload_box"]["name"];
+			$remote_photo_file = "../web/images/".$_FILES["image_upload_box"]["name"];
 			debug_to_console($remote_photo_file);
 			$workedUpload = FALSE;
-			if($_FILES["image_upload_box"]["type"] == "image/png")
-			{
+			if($_FILES["image_upload_box"]["type"] == "image/png") {
 				debug_to_console("Photo is PNG");
 				$workedUpload = imagepng($image_source,$remote_photo_file);
-			}
-			else
-			{
+			} else {
 				debug_to_console("Defaulting to JPG");
 				$workedUpload = imagejpeg($image_source,$remote_photo_file,100);
 			}
 
-			if($workedUpload)
-			{
+			if($workedUpload) {
 				debug_to_console("...Uploaded");
-			}
-			else
-			{
+			} else {
 				debug_to_console("...Upload Error");
 			}
 
 			chmod($remote_photo_file,0644);
 			debug_to_console($remote_photo_file);
 			// If photo isn't a gif, resize it
-			if($_FILES["image_upload_box"]["type"] != "image/gif" && $_FILES["image_upload_box"]["type"] != "image/png") {
+			if ($_FILES["image_upload_box"]["type"] != "image/gif" && $_FILES["image_upload_box"]["type"] != "image/png") {
 				debug_to_console("Photo is not gif");
 				list($image_width, $image_height) = getimagesize($remote_photo_file);
 			
@@ -102,29 +96,24 @@ if ((isset($_POST["submitted_form"])) && ($_POST["submitted_form"] == "image_upl
 			//$newAnnotation = $contentMatches[0]."$".$_SESSION["photo"].", ";
 			
 			//Sanatize the user input for the SQL query
-			$newAnnotation = mysqli_escape_string($newAnnotation);
+			$newAnnotation = mysqli_escape_string($link, $newAnnotation);
 			
-			$response =  mysql_query("UPDATE `" . $_SESSION["name"] . "` SET `" . $_SESSION["track"] . "` = '" . $newAnnotation . "' WHERE MeasureNumber = '" . $_SESSION["measure"] . "'");
+			$response =  mysqli_query($link, "UPDATE `" . $_SESSION["name"] . "` SET `" . $_SESSION["track"] . "` = '" . $newAnnotation . "' WHERE MeasureNumber = '" . $_SESSION["measure"] . "'");
 			
-			if ($response)
-			{	
+			if ($response) {
 				header("Location: edit.php");
 				exit;
+			} else {
+				header("Location: edit.php?upload_message=Database update error&upload_message_type=error");
+                exit;
 			}
-			else
-			{
-					header("Location: edit.php?upload_message=Database update error&upload_message_type=error");
-			exit;
-			}
-		}
-		else{
-		header("Location: edit.php?upload_message=Please make sure the file is smaller than 4Mb&upload_message_type=error");
-		exit;
-	}
-	}
-	else{
-		header("Location: edit.php?upload_message=Please make sure the file is in JPG, PNG, or GIF format&upload_message_type=error");
-		exit;
+		} else{
+            header("Location: edit.php?upload_message=Please make sure the file is smaller than 4Mb&upload_message_type=error");
+            exit;
+	    }
+	} else {
+        header("Location: edit.php?upload_message=Please make sure the file is in JPG, PNG, or GIF format&upload_message_type=error");
+        exit;
 	}
 }
 function debug_to_console( $data ) {
@@ -137,5 +126,3 @@ function debug_to_console( $data ) {
     echo $output;
 }
 ?>
-
-
