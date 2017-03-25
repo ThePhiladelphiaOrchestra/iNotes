@@ -8,7 +8,7 @@ sudo apt-get -y install git mysql-server-5.7 mysql-common apache2 php7.0 php7.0-
 
 if ! [ -L /var/livenote ]; then
   rm -rf /var/livenote
-  git clone https://github.com/ThePhiladelphiaOrchestra/iNotes.git /var/livenote
+  git clone https://github.com/JarvusInnovations/iNotes.git /var/livenote
   ln -fs /var/livenote/web /var/www/html
   ln -fs /var/livenote/CreateContent /var/www/html
   service apache2 restart
