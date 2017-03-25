@@ -28,7 +28,7 @@ function showTrack(track)
 	trackSelected=true;
 	try //Catch the errors that happen on page load -- do nothing with them
 	{
-		if (document.getElementById("measure").value == "#" || document.getElementById("measure".value == '') || document.getElementById("measure").value == null)
+		if (document.getElementById("measure").value == "#" || document.getElementById("measure".value === '') || document.getElementById("measure").value === null)
 		{
 			return;
 		}
@@ -44,7 +44,7 @@ function showTrack(track)
 function showMeasure(measure)
 {
 	currentMeasure=measure;
-	if (measure=="" || !trackSelected)
+	if (measure === "" || !trackSelected)
 	{
 		document.getElementById("measure_content").value="Please enter a measure number and select a track...";
 		return;
@@ -61,42 +61,37 @@ function updateSession(status) //-- To incorperate updating status ball
 	//alert("3:"+currentAnnotation);
 	//currentAnnotation = $('<div/>').text(currentAnnotation).html();
 	//alert("4:"+currentAnnotation);
-	if ( document.getElementById("photo_wrapper").style.display == "block" )
-	{
+	if ( document.getElementById("photo_wrapper").style.display == "block" ) {
 		currentPhoto = document.getElementById("photo").src;
 		currentPhoto = currentPhoto.substring( currentPhoto.lastIndexOf("/") + 1 );
 		currentCaption = document.getElementById("caption").value;
         currentCaptionLabel = "Image Caption:";
-	}
-	else
-	{
+	} else {
 		currentPhoto = "";
 		currentCaption = "";
         currentCaptionLabel = "";
 	}
-	if ( status == "pending" )
-		setStatus("pending")
-	else
-		setStatus("up-to-date")
+	if ( status == "pending" ) {
+		setStatus("pending");
+	} else {
+		setStatus("up-to-date");
+    }
 
 	// Send the data to update the session
-	if (window.XMLHttpRequest)
-	{// code for IE7+, Firefox, Chrome, Opera, Safari
+	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
 		xmlhttp=new XMLHttpRequest();
-	}
-	else
-	{// code for IE6, IE5
+	} else {// code for IE6, IE5
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	xmlhttp.onreadystatechange=function()
-	{
+	
+	xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
 			response = xmlhttp.responseText;
 			//alert(response);
 			document.getElementById("debug").value = response;
 		}
-	}
+	};
 	xmlhttp.open("POST","updateSession.php",false);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send("track="+currentTrack+"&measure="+currentMeasure+"&annotation="+currentAnnotation+"&photo="+currentPhoto+"&caption="+currentCaption+"&captionLabel="+currentCaptionLabel);
@@ -106,18 +101,13 @@ function updateSession(status) //-- To incorperate updating status ball
 // Grab the annotation for the current measure and call updatePage with it
 function displayInfo()
 {
-	if (window.XMLHttpRequest)
-	{// code for IE7+, Firefox, Chrome, Opera, Safari
+	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
 		xmlhttp=new XMLHttpRequest();
-	}
-	else
-	{// code for IE6, IE5
+	} else {// code for IE6, IE5
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	xmlhttp.onreadystatechange=function()
-	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
-		{
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 			response = xmlhttp.responseText;	
 			//document.getElementById("annotation").value = response;
 			//alert("1: "+response);
@@ -126,7 +116,7 @@ function displayInfo()
 			updatePage(response);
 			
 		}
-	}
+	};
 	xmlhttp.open("POST","displayInfo.php",false);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send();	
@@ -164,34 +154,30 @@ function updatePage(rawAnnotation)
 }
 
 // Take the current session information and update the database with it
-function updateDB()
+function updateDB() 
 {
-	if (window.XMLHttpRequest)
-	{// code for IE7+, Firefox, Chrome, Opera, Safari
+	if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
 		xmlhttp=new XMLHttpRequest();
-	}
-	else
-	{// code for IE6, IE5
+	} else { // code for IE6, IE5
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	xmlhttp.onreadystatechange=function()
-	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
-		{
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 			response = xmlhttp.responseText;
 			document.getElementById("debug2").value = response;
-			if (response == "Annotation Update Succeeded")
-			{
+			if (response == "Annotation Update Succeeded") {
 				setStatus('up-to-date');
-				if (document.getElementById("navRow"+currentMeasure) == null)
+				if (document.getElementById("navRow"+currentMeasure) === null) {
 					location.reload();
-				else  if (document.getElementById(currentTrack+"."+currentMeasure).innerHTML == " − " )
-					document.getElementById(currentTrack+"."+currentMeasure).innerHTML = " &#10003; "
+				} else if (document.getElementById(currentTrack+"."+currentMeasure).innerHTML == " - " ) {
+					document.getElementById(currentTrack+"."+currentMeasure).innerHTML = " &#10003; ";
+				}
 			}
-			if (respose == "Annotation Update Failed")
+			if (response === "Annotation Update Failed") {
 				setStaus('failed');
+            }
 		}
-	}
+	};
 	xmlhttp.open("POST","updateDB.php",false);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send();	
@@ -201,8 +187,9 @@ function updateDB()
 //Jump to a specified track and measure
 function jumpTo(track, measure)
 {
-	if (document.getElementById("navRow"+currentMeasure) != null)
+	if (document.getElementById("navRow"+currentMeasure) !== null) {
 		document.getElementById("navRow"+currentMeasure).style.background = "none";
+    }
 	currentTrack = track;
 	selectTrack(track);
 	document.getElementById("measure").value = measure;
@@ -214,34 +201,30 @@ function jumpTo(track, measure)
 //Jump to a specified track and measure
 function jumpPrompt()
 {
-	if (currentTrack == "")
+	if (currentTrack === "") {
 		alert("Error: You must add a track before you may add a new annotation.");
-	else 
-	{
+	} else {
 		var measure = window.prompt("Please enter Measure Number for the current track:\n\""+currentTrack+"\"",null);
-		if (measure != null && measure != "" && !isNaN(measure))
-			jumpTo(currentTrack,measure)
+		if (measure !== null && measure !== "" && !isNaN(measure)) {
+			jumpTo(currentTrack,measure);
+		}
 	}
 }
 
 //Add the track in the "add track" textbox
 function addTrack() {
 	var newTrack = window.prompt("Please enter the name of the new track:",null);
-	if (newTrack == "")
-	{
+	if (newTrack === "") {
 		alert("Error: No track name entered. No track added."); 
 		return;
 	}
-	if (window.XMLHttpRequest)
-	{// code for IE7+, Firefox, Chrome, Opera, Safari
+
+	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
 		xmlhttp=new XMLHttpRequest();
-	}
-	else
-	{// code for IE6, IE5
+	} else {// code for IE6, IE5
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	xmlhttp.onreadystatechange=function()
-	{	
+	xmlhttp.onreadystatechange = function() {	
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
 			if(xmlhttp.responseText == "success")
@@ -254,7 +237,7 @@ function addTrack() {
 			else
 				alert(xmlhttp.responseText);
 		}
-	}
+	};
 	xmlhttp.open("POST","addTrack.php",false);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send("newTrack="+newTrack);
@@ -264,18 +247,13 @@ function addTrack() {
 function deleteTrack(track)
 {
 	var conf = confirm("Are you sure you want to delete track \"" + track + "\"?  You will NOT be able to undo this action.");
-	if ( conf == true )
-	{
-		if (window.XMLHttpRequest)
-		{// code for IE7+, Firefox, Chrome, Opera, Safari
+	if ( conf === true ) {
+		if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
 			xmlhttp=new XMLHttpRequest();
-		}
-		else
-		{// code for IE6, IE5
+		} else { // code for IE6, IE5
 			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 		}
-		xmlhttp.onreadystatechange=function()
-		{
+		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
 				response = xmlhttp.responseText;
@@ -288,7 +266,7 @@ function deleteTrack(track)
 				if (respose == "Annotation Update Failed")
 					setStaus('failed');
 			}
-		}
+		};
 		xmlhttp.open("POST","deleteTrack.php",false);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send("track="+track);
@@ -325,7 +303,7 @@ function deletePhoto()
 function clearAnnotation()
 {
 	var conf = confirm("Are you sure you want to clear this annotation?  You will NOT be able to undo this action.");
-	if ( conf== true )
+	if ( conf === true )
 	{
 		document.getElementById("photo_wrapper").style.display = "none";
 		document.getElementById("annotation").value = "";
