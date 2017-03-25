@@ -4,7 +4,7 @@ debconf-set-selections <<< 'mysql-server mysql-server/root_password password roo
 debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password rootpass'
 
 sudo apt-get update
-sudo apt-get -y install git mysql-server-5.7 mysql-common apache2 php7.0 php7.0-mysql libapache2-mod-php php-mcrypt
+sudo apt-get -y install git mysql-server-5.7 mysql-common apache2 php7.0 php7.0-mysql libapache2-mod-php php-mcrypt php7.0-gd
 
 if ! [ -L /var/livenote ]; then
   rm -rf /var/livenote
