@@ -43,49 +43,38 @@ if ( mysqli_num_rows($columns) > 0 )
 	//Select the iNotes database
 	$success = mysqli_select_db($link, $dbname);
 	
-	$annotatedMeasures = mysql_query($link, "
+	$annotatedMeasures = mysqli_query($link, "
 	SELECT * 
 	FROM `".$_SESSION["name"]."` 
 	WHERE".printSQLTracks($tracks)."");
 	
-	if ( $annotatedMeasures && (mysqli_num_rows($annotatedMeasures) > 0) )
-	{
+	if ( $annotatedMeasures && (mysqli_num_rows($annotatedMeasures) > 0) ) {
 	
 		echo ('<table id="nav_table"><tr><td>#</td><td colspan="'.count($tracks).'">Track</td></tr><tr><td></td>');
-		for ($i=0;$i<count($tracks);$i++)
-			echo("<td>(".chr(97+$i).")</td>");	
+		for ($i=0;$i<count($tracks);$i++) {
+			echo("<td>(".chr(97+$i).")</td>");
+		}
 		echo('</tr>');
 		
-		while($current = mysqli_fetch_row($annotatedMeasures))
-		{
-			echo ('
-								<tr id="navRow'.$current[0].'"><td>'.$current[0].'</td>');
-			for ($i=2; $i<count($current); $i++)
-			{
-				if ($current[$i] != NULL)
-				{
-					echo ('
-									<td><a href="#" id="'.$tracks[$i-2].'.'.$current[0].'" onclick="jumpTo(\''.addslashes($tracks[$i-2]).'\',\''.$current[0].'\')"> &#10003; </a></td>');
-				}
-				else
-				{
-					echo ('
-									<td><a href="#" id="'.$tracks[$i-2].'.'.$current[0].'" onclick="jumpTo(\''.addslashes($tracks[$i-2]).'\',\''.$current[0].'\')"> &minus; </a></td>');
+		while($current = mysqli_fetch_row($annotatedMeasures)){
+			echo ('<tr id="navRow'.$current[0].'"><td>'.$current[0].'</td>');
+			for ($i=2; $i<count($current); $i++) {
+				if ($current[$i] != NULL) {
+					echo ('<td><a href="#" id="'.$tracks[$i-2].'.'.$current[0].'" onclick="jumpTo(\''.addslashes($tracks[$i-2]).'\',\''.$current[0].'\')"> &#10003; </a></td>');
+				} else {
+					echo ('<td><a href="#" id="'.$tracks[$i-2].'.'.$current[0].'" onclick="jumpTo(\''.addslashes($tracks[$i-2]).'\',\''.$current[0].'\')"> &minus; </a></td>');
 				}
 			}
-			echo ('
-								</tr>');
+			echo ('</tr>');
 		}
 		
-		echo('
-							</table>
-		');
-	}
-	else
+		echo('</table>');
+	} else {
 		echo ("No annotations.");
-}
-else
+    }
+} else {
 	echo ("No tracks. Please add one.");
+}
 
 mysqli_close($link);	
 ?>

@@ -5,22 +5,23 @@ ini_set("auto_detect_line_endings",true);  // automatically determine \n, \r, \r
 session_start();
 include("globals.php");
 
-if ( isset($_POST["submit"]) ) 
-{
-   if ( isset($_FILES["file"])) 
-   {
+if (isset($_POST["submit"])) {
+
+   if (isset($_FILES["file"])) {
+
         //If there was an error uploading the file
-        if ($_FILES["file"]["error"] > 0)
+        if ($_FILES["file"]["error"] > 0) {
 			header("Location: uploadCSV.php?error=".$_FILES["file"]["error"]);
-        else 
-		{
+
+        } else {
+
 			//Grab file extension and make sure it's .csv
 			$filePieces = explode(".", $_FILES["file"]["name"]);
 			$extension = end($filePieces);
-			if(strtolower($extension) != "csv")
-				header("Location: uploadCSV.php?error=9");				
-			else
-			{
+			if (strtolower($extension) != "csv") {
+				header("Location: uploadCSV.php?error=9");
+
+			} else {
 				//Store the file temporarily
 				$file = @fopen($_FILES["file"]['tmp_name'],'r');
 				
@@ -31,10 +32,10 @@ if ( isset($_POST["submit"]) )
 				$firstRow = fgetcsv($file);
 				
 				//First column name should be "MeasureNumber" or "Measure Number" (not case-sensitive).  Second column name should be "NumSeconds" or "Num Seconds" (not case-sensitive).
-				if( (strtolower($firstRow[0]) != "measurenumber" && strtolower($firstRow[0]) != "measure number") || (strtolower($firstRow[1]) != "numseconds" && strtolower($firstRow[1]) != "num seconds") )
+				if( (strtolower($firstRow[0]) != "measurenumber" && strtolower($firstRow[0]) != "measure number") || (strtolower($firstRow[1]) != "numseconds" && strtolower($firstRow[1]) != "num seconds") ) {
 					header("Location: uploadCSV.php?error=10");
-				else // The column headers are alright, continue
-				{
+
+				} else { // The column headers are alright, continue
     				$sessionName = !empty($_SESSION['name']) ? $_SESSION['name'] : null;
     				
 					$table_create_query = "CREATE TABLE `" . $sessionName . "`(MeasureNumber int, NumSeconds double";
@@ -60,10 +61,10 @@ if ( isset($_POST["submit"]) )
 					mysqli_select_db($link, $dbname);
 					$success = mysqli_query($link, $table_create_query);
 
-					if ( !$success )
+					if ( !$success ) {
 						header("Location: uploadCSV.php?error=11");  // If we couldn't create the table, tell them to try again
-					else
-					{
+
+					} else {
 						$measure = 0;
 						$insert_row_template = "INSERT INTO `" . $_SESSION['name'] . "` VALUES ("; // The string we'll append to in order to add each row
 						//Read until the end of the file
@@ -102,8 +103,8 @@ if ( isset($_POST["submit"]) )
 				}
 			}
         }
-     } 
-	 else 
-	 	echo "No file selected <br />";
+    } else {
+        echo "No file selected <br />";
+    } 
 }
 ?>
