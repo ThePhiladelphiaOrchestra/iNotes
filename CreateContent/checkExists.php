@@ -23,7 +23,7 @@ if ($_POST['name'] == "" || $_POST['name'] == "Enter name...") {
     }
 }
 
-if (!$_SESSION['exists']) {
+if (empty($_SESSION['exists']) || !$_SESSION['exists']) {
     header('Location: uploadCSV.php');
 } else {
     header('Location: edit.php');
