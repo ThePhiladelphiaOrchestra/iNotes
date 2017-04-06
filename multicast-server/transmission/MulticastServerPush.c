@@ -42,10 +42,10 @@ int main(int argc, char** argv) {
     MYSQL *conn;
     MYSQL_RES *res;
     MYSQL_ROW row;
-    char *server = "PUT.SERVER.URL.OR.IP_ADDR.HERE";
-    char *user = "mysql_username";
-    char *password = "mysql_password";
-    char *database = "database_name";
+    char *server = "localhost";
+    char *user = "inotes";
+    char *password = "inotes";
+    char *database = "content";
 
     conn = mysql_init(NULL);
     
