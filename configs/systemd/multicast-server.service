@@ -1,0 +1,12 @@
+[Unit]
+Description=LiveNote Multicast Server daemon
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=root
+ExecStart=/opt/livenote/multicast-server/transmission/multicast-server
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
