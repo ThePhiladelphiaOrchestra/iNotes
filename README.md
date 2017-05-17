@@ -1,2 +1,12 @@
-# iNotes
-The publicly available versions of the native iPhone app, the multicast server and the CMS for LiveNote.
+## Create VM: ##
+`vagrant up`
+
+## Login to VM: ##
+`vagrant ssh`
+
+## Destroy VM: ##
+`vagrant destroy`
+
+## Get IP Address: ##
+`ifconfig`
+
