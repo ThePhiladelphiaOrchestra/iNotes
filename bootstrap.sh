@@ -6,6 +6,24 @@ debconf-set-selections <<< 'mysql-server mysql-server/root_password_again passwo
 sudo apt-get update
 sudo apt-get -y install git mysql-server-5.7 mysql-common apache2 php7.0 php7.0-mysql libapache2-mod-php php-mcrypt php7.0-gd build-essential libmysqlclient-dev
 
+# size of swapfile in megabytes
+swapsize=2000
+
+# does the swap file already exist?
+grep -q "swapfile" /etc/fstab
+
+# if not then create it
+if [ $? -ne 0 ]; then
+  echo 'swapfile not found. Adding swapfile.'
+  fallocate -l ${swapsize}M /swapfile
+  chmod 600 /swapfile
+  mkswap /swapfile
+  swapon /swapfile
+  echo '/swapfile none swap defaults 0 0' >> /etc/fstab
+else
+  echo 'swapfile found. No changes made.'
+fi
+
 if ! [ -L /opt/livenote ]; then
   rm -rf /opt/livenote
   git clone https://github.com/JarvusInnovations/iNotes.git /opt/livenote
