@@ -230,6 +230,9 @@ int main(int argc, char** argv) {
         
         usleep(100000);
         count++;
+        if ( count > 100) {
+          count = 0;
+        }
         // free(pushMessage);
         // free(status);
         // free(s);
