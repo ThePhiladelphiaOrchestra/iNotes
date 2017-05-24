@@ -26,7 +26,7 @@ fi
 
 if ! [ -L /opt/livenote ]; then
   rm -rf /opt/livenote
-  git clone https://github.com/JarvusInnovations/iNotes.git /opt/livenote
+  git clone https://github.com/ThePhiladelphiaOrchestra/iNotes-Server.git /opt/livenote
   cp /opt/livenote-configs/apache/livenote.conf /etc/apache2/sites-available/
 
   a2ensite livenote
